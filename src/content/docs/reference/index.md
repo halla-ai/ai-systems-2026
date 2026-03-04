@@ -1,6 +1,6 @@
 ---
 title: 참고자료
-description: AI 엔지니어링 2026 강의 참고자료 모음
+description: AI 시스템 2026 강의 참고자료 모음
 ---
 
 ## 참고자료 모음

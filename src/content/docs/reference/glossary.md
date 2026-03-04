@@ -1,6 +1,6 @@
 ---
 title: 용어집
-description: AI 엔지니어링 2026 강의 주요 용어 정의
+description: AI 시스템 2026 강의 주요 용어 정의
 ---
 
 ## 용어집

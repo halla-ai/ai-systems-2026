@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://ai-systems-2026.halla.ai',
   integrations: [
     starlight({
-      title: 'AI 엔지니어링 2026',
+      title: 'AI 시스템 2026',
       description: '제주한라대학교 인공지능학과 4학년 — 에이전틱 워크플로우와 하네스 엔지니어링',
       defaultLocale: 'root',
       locales: {

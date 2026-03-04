@@ -1,6 +1,6 @@
 ---
 title: 강의계획서
-description: AI 엔지니어링 2026 — 에이전틱 워크플로우와 하네스 엔지니어링
+description: AI 시스템 2026 — 에이전틱 워크플로우와 하네스 엔지니어링
 lastUpdated: 2026-03-03
 ---
 
@@ -8,7 +8,7 @@ lastUpdated: 2026-03-03
 
 | 항목 | 내용 |
 |------|------|
-| **강의명** | AI 엔지니어링 (Machine Learning Systems: Agentic Workflows and Harness Engineering) |
+| **강의명** | AI 시스템 (Machine Learning Systems: Agentic Workflows and Harness Engineering) |
 | **학수번호** | AI4001 |
 | **학점** | 3학점 (이론 2 + 실습 1) |
 | **대상** | 인공지능학과 4학년 |
@@ -40,7 +40,7 @@ lastUpdated: 2026-03-03
 
 | 주차 | 이론 | 실습 |
 |------|------|------|
-| 1주 | 코스 오리엔테이션, AI 엔지니어링 패러다임 전환, HITL vs HOTL 비교 | 개발 환경 설정, Claude Code 설치 (Lab 01) |
+| 1주 | 코스 오리엔테이션, AI 시스템 패러다임 전환, HITL vs HOTL 비교 | 개발 환경 설정, Claude Code 설치 (Lab 01) |
 | 2주 | HOTL 거버넌스 상세, EU AI Act 컴플라이언스, Governance-as-Code | 첫 번째 에이전틱 루프 구현 (Lab 02) |
 | 3주 | MIG 기술 원리, Kubernetes 오케스트레이션, MCP(Model Context Protocol) | MCP 서버 구성 및 도구 연결 (Lab 03) |
 

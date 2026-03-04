@@ -1,6 +1,6 @@
 ---
 title: 캡스톤 프로젝트 개요
-description: AI 엔지니어링 2026 캡스톤 — Ralphthon 프로젝트 안내
+description: AI 시스템 2026 캡스톤 — Ralphthon 프로젝트 안내
 ---
 
 ## Ralphthon 캡스톤 프로젝트
