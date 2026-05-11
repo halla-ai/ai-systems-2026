@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project artifacts
+pipeline-state.json
+review-results.json
+architecture.md
+task_queue.json
+
+# OS
+.DS_Store
+Thumbs.db
