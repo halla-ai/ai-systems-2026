@@ -1,0 +1,14 @@
+[
+  {
+    "variant": "v1",
+    "success": false,
+    "iterations": 2,
+    "elapsed_seconds": 0.5
+  },
+  {
+    "variant": "v2",
+    "success": true,
+    "iterations": 1,
+    "elapsed_seconds": 0.5
+  }
+]
