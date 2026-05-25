@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "generated_by": "replay.py",
+    "source_events_file": "run-f34ef276.events.jsonl",
+    "total_events": 37
+  },
+  "run": {
+    "run_id": "run-f34ef276",
+    "start_ts": "2026-05-25T13:50:18.475268+00:00",
+    "end_ts": "2026-05-25T13:50:19.339704+00:00",
+    "closed": true,
+    "total_cost_usd": 0.003772
+  },
+  "summary": {
+    "tasks_total": 5,
+    "tasks_closed": 4,
+    "tasks_gate_pass": 4,
+    "tasks_gate_fail": 1,
+    "total_artifacts": 5
+  },
+  "tasks": [
+    {
+      "task_id": "task-001",
+      "agent_role": "planner",
+      "model": "gpt-4o",
+      "description": "Analyze AI systems performance data",
+      "start_ts": "2026-05-25T13:50:18.475268+00:00",
+      "end_ts": "2026-05-25T13:50:18.648699+00:00",
+      "cost": 0.0007279999999999999,
+      "output": {
+        "task_id": "task-001",
+        "agent_role": "planner",
+        "model": "gpt-4o",
+        "tool": "validator",
+        "gate": "fail",
+        "result": "valid"
+      },
+      "gate_result": "fail",
+      "artifact_path": "artifacts/task-001/output.json",
+      "closed": false,
+      "duration_s": 0.1734
+    },
+    {
+      "task_id": "task-002",
+      "agent_role": "executor",
+      "model": "claude-3-5-sonnet",
+      "description": "Execute data preprocessing pipeline",
+      "start_ts": "2026-05-25T13:50:18.648699+00:00",
+      "end_ts": "2026-05-25T13:50:18.821156+00:00",
+      "cost": 0.0008240000000000001,
+      "output": {
+        "task_id": "task-002",
+        "agent_role": "executor",
+        "model": "claude-3-5-sonnet",
+        "tool": "validator",
+        "gate": "pass",
+        "result": "valid"
+      },
+      "gate_result": "pass",
+      "artifact_path": "artifacts/task-002/output.json",
+      "closed": true,
+      "duration_s": 0.1725
+    },
+    {
+      "task_id": "task-003",
+      "agent_role": "reviewer",
+      "model": "gemini-1.5-pro",
+      "description": "Review output quality metrics",
+      "start_ts": "2026-05-25T13:50:18.821156+00:00",
+      "end_ts": "2026-05-25T13:50:18.993795+00:00",
+      "cost": 0.000822,
+      "output": {
+        "task_id": "task-003",
+        "agent_role": "reviewer",
+        "model": "gemini-1.5-pro",
+        "tool": "code_executor",
+        "gate": "pass",
+        "result": "Executed snippet: Review output quality met..."
+      },
+      "gate_result": "pass",
+      "artifact_path": "artifacts/task-003/output.json",
+      "closed": true,
+      "duration_s": 0.1726
+    },
+    {
+      "task_id": "task-004",
+      "agent_role": "synthesizer",
+      "model": "llama-3.1-70b",
+      "description": "Synthesize final experiment report",
+      "start_ts": "2026-05-25T13:50:18.993795+00:00",
+      "end_ts": "2026-05-25T13:50:19.166400+00:00",
+      "cost": 0.0009419999999999999,
+      "output": {
+        "task_id": "task-004",
+        "agent_role": "synthesizer",
+        "model": "llama-3.1-70b",
+        "tool": "summarizer",
+        "gate": "pass",
+        "result": "Summary (34 chars)"
+      },
+      "gate_result": "pass",
+      "artifact_path": "artifacts/task-004/output.json",
+      "closed": true,
+      "duration_s": 0.1726
+    },
+    {
+      "task_id": "task-005",
+      "agent_role": "executor",
+      "model": "gpt-4o",
+      "description": "Validate and store result artifacts",
+      "start_ts": "2026-05-25T13:50:19.166400+00:00",
+      "end_ts": "2026-05-25T13:50:19.339704+00:00",
+      "cost": 0.00045599999999999997,
+      "output": {
+        "task_id": "task-005",
+        "agent_role": "executor",
+        "model": "gpt-4o",
+        "tool": "file_writer",
+        "gate": "pass",
+        "result": "Written to Validate and store result artifacts"
+      },
+      "gate_result": "pass",
+      "artifact_path": "artifacts/task-005/output.json",
+      "closed": true,
+      "duration_s": 0.1733
+    }
+  ],
+  "artifacts": [
+    "artifacts/task-001/output.json",
+    "artifacts/task-002/output.json",
+    "artifacts/task-003/output.json",
+    "artifacts/task-004/output.json",
+    "artifacts/task-005/output.json"
+  ]
+}
