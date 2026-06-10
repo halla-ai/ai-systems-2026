@@ -1,0 +1,28 @@
+{
+  "lab_id": "MATH-01",
+  "title": "버스에서 내린 사람 — 뺄셈 문장제",
+  "question": "버스에 사람이 15명 타고 있었어요. 정류장에서 7명이 내렸어요. 지금 버스에 몇 명이 남아 있을까요?",
+  "reference_solution": "15 - 7 = 8, 답은 8명",
+  "answer_concepts": [
+    "내리는 것은 줄어드는 상황이다",
+    "줄어드는 상황은 뺄셈으로 푼다",
+    "15에서 7만큼 거꾸로 세면 8"
+  ],
+  "misconception_taxonomy": {
+    "operation_confusion": "줄어드는 상황인데 덧셈을 함 (15+7=22 처럼)",
+    "counting_error": "거꾸로 세다가 수를 한두 개 틀림",
+    "direction_unaware": "사람이 내리면 수가 줄어든다는 것을 모름"
+  },
+  "forbidden_templates": [
+    "8명",
+    "8 명",
+    "15-7",
+    "15 - 7",
+    "8개"
+  ],
+  "forbidden_nl_seed": [
+    "정답은 팔",
+    "8명이 남",
+    "십오에서 칠을 빼"
+  ]
+}
