@@ -1,0 +1,14 @@
+{
+  "action": "opened",
+  "number": 5821,
+  "pull_request": {
+    "user": {
+      "login": "kennethreitz"
+    },
+    "title": "Refactor DigestAuth handling for improved security",
+    "changed_files": [
+      "requests/auth.py"
+    ],
+    "diff_url": "https://github.com/psf/requests/pull/5821.diff"
+  }
+}

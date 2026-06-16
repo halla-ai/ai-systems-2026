@@ -1,0 +1,7 @@
+{"role": "user", "content": "우리 서비스에 실시간 채팅을 넣으려고 하는데, Socket.io랑 gRPC 중에 뭐가 좋을까?"}
+{"role": "assistant", "content": "웹 브라우저 기반이면 Socket.io가 범용성이 좋습니다. 하지만 서버 간 통신이 많다면 gRPC가 속도 면에서 유리해요."}
+{"role": "user", "content": "우린 일단 웹이랑 모바일 둘 다 지원해야 해. 그리고 나중에 MSA로 확장할 계획도 있어."}
+{"role": "assistant", "content": "그렇다면 양방향 스트리밍이 가능한 gRPC-web을 고려해 보세요. 하지만 설정이 복잡할 수 있습니다."}
+{"role": "user", "content": "음, 고민되네. 팀원들이 gRPC에 익숙하지 않아서 일단 생산성 위주로 Socket.io를 먼저 쓰기로 했어. 대신 나중에 모듈을 쉽게 갈아끼울 수 있게 인터페이스를 추상화해두려고."}
+{"role": "assistant", "content": "현명한 결정입니다! '어댑터 패턴'을 써서 통신 계층을 격리해두면 나중에 gRPC로 마이그레이션하기 훨씬 쉬울 거예요."}
+{"role": "user", "content": "오케이, 그럼 Socket.io + 어댑터 패턴으로 구조 잡고 이거 ADR로 남겨줘."}
