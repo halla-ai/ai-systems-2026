@@ -18,7 +18,7 @@ difficulty: 고급
 estimated_time: 8시간
 ---
 
-import { Aside, Steps, Badge, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Aside, Steps, Badge, Tabs, TabItem, Card, CardGrid } from '@astrojs/starlight/components';
 
 <div class="week-meta">
   <span class="phase-tag">Phase 3</span>
@@ -29,11 +29,28 @@ import { Aside, Steps, Badge, Tabs, TabItem } from '@astrojs/starlight/component
 
 ## 이론 (Theory)
 
+### 오늘의 학습 목표
+
+<CardGrid>
+  <Card title="개념 관점" icon="open-book">
+    Worker가 자기 코드를 검증할 때 발생하는 conflict-of-interest를 설명하고, QA 에이전트가 가져야 할 독립성 4원칙을 정의한다.
+  </Card>
+  <Card title="설계 관점" icon="seti:config">
+    deterministic test → policy gate → LLM-as-Judge → human review로 이어지는 feedback loop와 escalation 경로를 설계한다.
+  </Card>
+  <Card title="구현 관점" icon="pencil">
+    QA 에이전트와 LLM-as-Judge를 코드로 통합해 strict JSON verdict와 retry 로직을 자동화한다.
+  </Card>
+  <Card title="운영 관점" icon="rocket">
+    judge 신뢰도(상관관계)·human override 빈도·false-pass 비율을 정기적으로 보고하고 prompt/rubric을 갱신한다.
+  </Card>
+</CardGrid>
+
 ### 왜 QA 에이전트가 별도여야 하는가
 
 7주차에서 설계한 멀티에이전트 SDLC 파이프라인의 **Phase 5: Verify**를 기억하는가. 당시 핵심 설계 원칙은 "검증 에이전트는 생성 에이전트와 독립적이어야 한다"였다. 이 원칙은 직관이 아니라 실증 데이터에 근거한다.
 
-DeepMind와 MIT의 에이전트 시스템 스케일링 연구에 따르면, **검증 에이전트가 생성 에이전트와 컨텍스트를 공유할 경우 동일한 편향을 상속**한다. 코더가 특정 가정 하에 코드를 작성했다면, 같은 컨텍스트를 가진 QA 에이전트는 그 가정을 당연하게 받아들이고 검증을 건너뛴다. "나도 그렇게 생각했으니까"라는 편향이다.
+DeepMind와 MIT의 에이전트 시스템 스케일링 연구에 따르면, **검증 에이전트가 생성 에이전트와 컨텍스트를 공유할 경우 동일한 편향을 상속**한다. 코더가 특정 가정 하에 코드를 작성했다면, 같은 컨텍스트를 가진 QA 에이전트는 그 가정을 전제로 삼아 검증을 생략할 수 있다. 이는 공유 컨텍스트가 검증 독립성을 약화시키는 사례다.
 
 PwC의 2025 AI Agent Report는 더 구체적인 수치를 제시한다. 단일 에이전트(코더만) 구조에서 정확도는 10% 수준이었으나, **독립적 judge agent를 추가하자 70%로 향상**됐다. 7배 개선이다. QA 에이전트 독립성은 선택이 아니라 시스템 신뢰성의 전제 조건이다.
 
@@ -74,6 +91,7 @@ Claude Code의 model routing 기능을 활용하면 QA 에이전트에 더 강�
 
 ```python
 # qa_agent.py
+import os
 import subprocess
 import anthropic
 from pathlib import Path
@@ -97,7 +115,7 @@ class QAAgent:
     def code_review(self, diff: str) -> str:
         """Claude를 통한 코드 리뷰"""
         response = self.client.messages.create(
-            model="claude-opus-4-6",
+            model=os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5"),
             max_tokens=2048,
             system="""당신은 시니어 소프트웨어 엔지니어입니다.
 코드 diff를 검토하고 다음을 확인하세요:
@@ -129,9 +147,14 @@ class QAAgent:
 
 7주차에서 설계한 3-parallel reviewer 패턴을 실제로 구현한다. 정확성(Correctness), 품질(Quality), 아키텍처(Architecture) 세 관점이 동시에 검토되고, 심각도 기반 PASS/FAIL 게이트가 최종 판단을 내린다.
 
+<Aside type="tip" title="L8 매핑 — 이 구현이 무엇의 인스턴스인가">
+이 코드는 사실상 Agent OS Runtime [L8 Workflow Plane](/reference/agent-os-runtime/#workflow-plane-l8)의 두 개념을 비공식으로 구현한 것이다 — 정확성/품질/아키텍처 리뷰어를 동시에 호출하고 결과를 합치는 부분은 **persona fan-out / fan-in**, 심각도 × 점수 기준으로 PASS/FAIL을 결정하는 게이트는 **severity-routing + confidence-gating** 정책이다. 이 실습의 `critical/major/minor/info`는 L8 `finding_v1`의 `P0/P1/P2/P3`로 매핑할 수 있다. L8 SSOT(`workflows/personas/`, `workflows/policies/`)로 옮기면 코드 0줄로 새 리뷰어 차원을 추가하거나 심각도 기준을 조정할 수 있고, 결정마다 `workflow.policy_gated` event가 audit log에 남는다.
+</Aside>
+
 ```python
 # parallel_reviewer.py
 import concurrent.futures
+import os
 import anthropic
 from dataclasses import dataclass
 from typing import Literal
@@ -150,7 +173,7 @@ class ParallelReviewer:
 
     def _call_claude(self, system: str, user: str) -> str:
         response = self.client.messages.create(
-            model="claude-opus-4-6",
+            model=os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5"),
             max_tokens=1024,
             system=system,
             messages=[{"role": "user", "content": user}]
@@ -458,19 +481,47 @@ Week 8(PlannerAgent) → Coder → Week 9(QAAgent)로 이어지는 end-to-end �
 
 **아티팩트 체인 (Artifact Chain)**
 
-```
-requirement.md          ← Planner 입력
-    ↓
-architecture.md         ← Planner 출력 (Week 8)
-    ↓
-TASK-001.md, TASK-002.md ← task_queue.json 기반 Coder 할당
-    ↓
-PR (코드 + 테스트)       ← Coder 출력
-    ↓
-review-results.json     ← QA 출력 (Week 9)
-    ↓
-LESSON-001.md           ← 실패 패턴 학습 기록
-```
+<div class="artifact-chain diagram">
+  <div class="diagram__title">ARTIFACT CHAIN</div>
+  <div class="artifact-chain__layout">
+    <div class="artifact-chain__flow">
+      <div class="artifact-chain__item artifact-chain__item--blue">
+        <span class="artifact-chain__meta">Planner 입력</span>
+        <code>requirement.md</code>
+      </div>
+      <div class="artifact-chain__arrow" aria-hidden="true">↓</div>
+      <div class="artifact-chain__item artifact-chain__item--purple">
+        <span class="artifact-chain__meta">Planner 출력 · Week 8</span>
+        <code>architecture.md</code>
+      </div>
+      <div class="artifact-chain__arrow" aria-hidden="true">↓</div>
+      <div class="artifact-chain__item artifact-chain__item--cyan">
+        <span class="artifact-chain__meta">task_queue.json 기반 Coder 할당</span>
+        <code>TASK-001.md · TASK-002.md</code>
+      </div>
+      <div class="artifact-chain__arrow" aria-hidden="true">↓</div>
+      <div class="artifact-chain__item artifact-chain__item--orange">
+        <span class="artifact-chain__meta">Coder 출력</span>
+        <code>PR (코드 + 테스트)</code>
+      </div>
+      <div class="artifact-chain__arrow" aria-hidden="true">↓</div>
+      <div class="artifact-chain__item artifact-chain__item--green">
+        <span class="artifact-chain__meta">QA 출력 · Week 9</span>
+        <code>review-results.json</code>
+      </div>
+      <div class="artifact-chain__arrow" aria-hidden="true">↓</div>
+      <div class="artifact-chain__item artifact-chain__item--gray">
+        <span class="artifact-chain__meta">실패 패턴 학습 기록</span>
+        <code>LESSON-001.md</code>
+      </div>
+    </div>
+    <div class="artifact-chain__state">
+      <span class="artifact-chain__state-label">Central State Store</span>
+      <code>pipeline-state.json</code>
+      <p>각 아티팩트의 생성 시점, 담당 에이전트, 현재 Phase를 기록하고 중단 지점부터 재시작할 수 있게 한다.</p>
+    </div>
+  </div>
+</div>
 
 `pipeline-state.json`은 각 아티팩트가 생성된 시점, 담당 에이전트, 현재 Phase를 기록한다. 파이프라인이 중단되더라도 어느 단계까지 완료됐는지 파악하고 재시작할 수 있다.
 
@@ -527,7 +578,7 @@ Week 8에서 구현한 PlannerAgent와 이번 주의 QAAgent를 연결하여 3�
 **제출 마감**: 2026-05-05 23:59
 
 **요구사항**:
-1. 완전한 `QAAgent` 구현
+1. 동작하는 `QAAgent` 구현
 2. 자동 코드 리뷰 기능 (Claude API 활용)
 3. 피드백 루프 구현 (QA 실패 → Coder 재실행)
 4. Planner → Coder → QA 3단계 파이프라인 end-to-end 시연 영상 또는 로그

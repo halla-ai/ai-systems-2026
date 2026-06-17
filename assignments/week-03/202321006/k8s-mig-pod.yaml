@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: student-202321006-workspace
+  namespace: ai-systems
+  labels:
+    course: ai-systems-2026
+    student_id: "202321006"
+spec:
+  # REQ: nodeAffinity for specific MIG profile
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/mig.config
+            operator: In
+            values:
+            - all-1g.10gb
+  containers:
+  - name: ai-workspace
+    image: pytorch/pytorch:2.5-cuda12-cudnn9-devel
+    resources:
+      requests:
+        # Request 1 MIG 1g.10gb slice
+        nvidia.com/mig-1g.10gb: "1"
+        memory: "8Gi"
+        cpu: "4"
+      limits:
+        nvidia.com/mig-1g.10gb: "1"
+        memory: "16Gi"
+        cpu: "8"
+    volumeMounts:
+    - name: workspace-vol
+      mountPath: /workspace
+  volumes:
+  - name: workspace-vol
+    persistentVolumeClaim:
+      claimName: student-202321006-pvc
+  restartPolicy: Never

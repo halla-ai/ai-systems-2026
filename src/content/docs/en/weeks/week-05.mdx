@@ -29,6 +29,23 @@ import { Aside, Steps, Badge, Card, CardGrid } from '@astrojs/starlight/componen
 
 ## Theory
 
+### Learning Objectives
+
+<CardGrid>
+  <Card title="Concepts" icon="open-book">
+    Define Context Rot and explain why it persists in long-context models in terms of attention dilution and instruction drift.
+  </Card>
+  <Card title="Design" icon="seti:config">
+    Compare three strategies — context window wiping, summarization, state-tracking files — and decide which combination fits a Ralph loop.
+  </Card>
+  <Card title="Implementation" icon="pencil">
+    Author `tasks.md` (or an equivalent state file) that serializes compact progress every turn in a token-efficient way.
+  </Card>
+  <Card title="Operations" icon="rocket">
+    Measure cache hit ratio, prompt tokens, and summarization cost to report the ROI of your context strategy quantitatively.
+  </Card>
+</CardGrid>
+
 ### Why Context Management is Central in Week 5
 
 In Week 4 we learned the power of the loop paradigm — calling the same model repeatedly while using deterministic validation to ensure quality. But for a loop to work, there is a **prerequisite**: **the context must be clean.**
@@ -71,7 +88,7 @@ Context Rot is the phenomenon where an agent's context window becomes increasing
 
 #### Empirical Data: Chroma's Context Rot Research
 
-"Longer context gets worse" is intuitive, but **how much** worse was first quantified by Chroma's 2026 empirical study. Testing 18 frontier models (Claude, GPT, Gemini, Llama, and others):
+"Longer context gets worse" is intuitive, but Chroma's 2026 empirical study provides a representative quantitative measurement of **how much** worse it gets. Testing 18 frontier models (Claude, GPT, Gemini, Llama, and others):
 
 | Finding | Data |
 |---------|------|
@@ -87,7 +104,7 @@ Frontier model context windows as of 2026:
 
 | Model | Official Context | Effective Usage |
 |-------|-----------------|-----------------|
-| Claude Opus/Sonnet 4.6 | 1M tokens | ~600-700K |
+| current Claude frontier family | 1M-token class | ~600-700K |
 | GPT-5.4 | 1M tokens | ~600-700K |
 | Gemini 2.5 Pro | 1M tokens | ~600-700K |
 
@@ -355,12 +372,13 @@ Measure context usage directly and compare before and after compaction to experi
    Run the `/cost` command in a Claude Code session to check the current session's token usage. After 10 turns of conversation, measure again and record the increase.
 
    ```python
+   import os
    import anthropic
 
    def count_tokens(messages: list) -> int:
        client = anthropic.Anthropic()
        response = client.messages.count_tokens(
-           model="claude-opus-4-6",
+           model=os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5"),
            messages=messages
        )
        return response.input_tokens
@@ -397,12 +415,12 @@ Measure context usage directly and compare before and after compaction to experi
 
 ---
 
-## Key Summary
+## Key Takeaways
 
 1. **Context Rot is an empirical phenomenon** — Chroma study: accuracy degrades as input grows longer across all 18 models. 30%+ degradation at mid-window positions.
 2. **A 1M token window is not the solution** — a bigger window just means a larger space for Context Rot to occur in. Effective usage is 60-70%.
 3. **Compaction is token-based** — auto-triggered at ~75% of model maximum. Preserves the last 4 messages, summarizes the rest.
-4. **Ralph's fresh context is best between loops** — use compaction inside a loop, full reset + state file handoff between loops.
+4. **Ralph's fresh context is the default between loops** — use compaction inside a loop, full reset + state file handoff between loops.
 5. **40-70% of tokens are wasted** — cut costs with model routing (Haiku 60-70%), prompt caching (read at 0.1x), and keeping CLAUDE.md under 200 lines.
 6. **Initializer pattern** — manage state deterministically with a 2-phase structure: JSON feature list + claude-progress.txt + init.sh.
 

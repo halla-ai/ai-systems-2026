@@ -29,6 +29,23 @@ import { Aside, Steps, Badge, Tabs, TabItem, Card, CardGrid } from '@astrojs/sta
 
 ## 이론 (Theory)
 
+### 오늘의 학습 목표
+
+<CardGrid>
+  <Card title="개념 관점" icon="open-book">
+    "Sign" 메타포로 instruction tuning을 설명하고, 영구 컨텍스트(PROMPT.md / AGENTS.md)와 일시적 프롬프트의 역할 분리를 정리한다.
+  </Card>
+  <Card title="설계 관점" icon="seti:config">
+    instruction layer를 mission / norms / pitfalls / examples 4구역으로 설계하고, 어떤 실패 패턴을 어떤 구역에서 흡수할지 결정한다.
+  </Card>
+  <Card title="구현 관점" icon="pencil">
+    프로젝트 PROMPT.md를 고도화해 반복 실수 1-2개를 명시적 금지 패턴으로 박제하고, 실패 → instruction 업데이트 사이클을 자동화한다.
+  </Card>
+  <Card title="운영 관점" icon="rocket">
+    instruction drift를 모니터링하고, 분기마다 instruction을 재검토 / 정리 / 삭제하는 "instruction housekeeping" 루틴을 제안한다.
+  </Card>
+</CardGrid>
+
 ### 왜 6주차에서 인스트럭션 튜닝이 중심인가
 
 5주차에서 컨텍스트를 깨끗하게 유지하는 법을 배웠다 — auto-compaction, fresh context, 상태 파일. 하지만 컨텍스트가 깨끗해도, 에이전트가 **같은 실수를 반복하면** 소용이 없다.
@@ -232,7 +249,7 @@ Boris Cherny의 팀은 주니어 엔지니어가 낯선 서비스에서 작업�
 | `low` | 단순 조회, 타입 확인 | 최소 | `claude --effort low "이 함수의 반환 타입?"` |
 | `medium` | 일반적인 코드 수정 | 보통 | `claude --effort medium "테스트 추가"` |
 | `high` | 아키텍처 설계, 복잡한 디버깅 | 높음 | `claude --effort high "비동기 리팩터링 설계"` |
-| `max` | 최대 추론 깊이 (Opus 4.6 전용) | 최대 (10x+) | `claude --effort max "보안 취약점 분석"` |
+| `max` | 최대 추론 깊이 (지원 모델 한정) | 최대 (10x+) | `claude --effort max "보안 취약점 분석"` |
 
 Ralph 루프에서 effort level의 실전 활용: 루프 초반(탐색 단계)에는 `low`로 빠르게 시도하고, 핵심 구현 단계에서 `high`로 전환하면 토큰 비용을 최적화할 수 있다.
 
@@ -315,6 +332,10 @@ Hook은 도구 호출, 세션 이벤트 등에 **셸 명령/HTTP/LLM 판단**을
 - PreToolUse Hook의 deny가 permission rule의 allow보다 **항상 우선** — Hook은 제약을 강화할 수 있지만 완화할 수 없다
 - `if` 필드(v2.1.85+)로 특정 패턴만 매칭: `"if": "Bash(git *)"` → git 명령에만 트리거
 - Hook은 사용자의 settings.json에서만 정의 가능 — 에이전트가 스스로 Hook을 수정할 수 없다
+</Aside>
+
+<Aside type="note" title="Markdown-SSOT Skill Runtime">
+Agent OS Runtime은 CLAUDE.md/PROMPT.md 패턴을 `SKILL.md`로 일반화한다. skill frontmatter에는 `triggers`, `allowed-tools`, `schema_version`을 두고, runtime은 이를 `skill_frontmatter_v1`로 검증한 뒤 tool scope를 제한한다. 즉, instruction tuning은 "좋은 문구"에서 끝나지 않고 [Markdown-SSOT + hook-gated policy](/reference/agent-os-runtime/#contracts)로 실행 가능해진다.
 </Aside>
 
 ---

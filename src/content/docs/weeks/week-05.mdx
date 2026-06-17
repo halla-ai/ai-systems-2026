@@ -29,6 +29,23 @@ import { Aside, Steps, Badge, Card, CardGrid } from '@astrojs/starlight/componen
 
 ## 이론 (Theory)
 
+### 오늘의 학습 목표
+
+<CardGrid>
+  <Card title="개념 관점" icon="open-book">
+    Context Rot 현상을 정의하고 long-context 모델에서도 발생하는 이유를 attention dilution / instruction drift 관점에서 설명한다.
+  </Card>
+  <Card title="설계 관점" icon="seti:config">
+    Context window wiping, summarization, state-tracking 파일 3가지 전략을 비교하고 Ralph 루프에 어떤 조합을 적용할지 결정한다.
+  </Card>
+  <Card title="구현 관점" icon="pencil">
+    `tasks.md` 또는 동등한 상태 파일을 작성해 매 turn마다 압축된 진행 상태를 토큰 효율적으로 직렬화한다.
+  </Card>
+  <Card title="운영 관점" icon="rocket">
+    cache hit ratio · prompt token · summarization 비용을 측정해 컨텍스트 전략의 ROI를 정량적으로 보고한다.
+  </Card>
+</CardGrid>
+
 ### 왜 5주차에서 컨텍스트 관리가 중심인가
 
 4주차에서 루프 패러다임의 위력을 배웠다 — 같은 모델을 반복 호출하되, 결정론적 검증으로 품질을 확보한다. 하지만 루프가 작동하려면 **전제 조건**이 있다: **컨텍스트가 깨끗해야 한다.**
@@ -71,7 +88,7 @@ import { Aside, Steps, Badge, Card, CardGrid } from '@astrojs/starlight/componen
 
 #### 실증 데이터: Chroma의 Context Rot 연구
 
-"컨텍스트가 길어지면 나빠진다"는 직관적이지만, **얼마나** 나빠지는지는 Chroma의 2026년 실증 연구가 처음으로 정량화했다. 18개 frontier 모델(Claude, GPT, Gemini, Llama 등)을 대상으로 테스트한 결과:
+"컨텍스트가 길어지면 나빠진다"는 직관적이지만, **얼마나** 나빠지는지는 Chroma의 2026년 실증 연구가 대표적으로 정량화했다. 18개 frontier 모델(Claude, GPT, Gemini, Llama 등)을 대상으로 테스트한 결과:
 
 | 발견 | 수치 |
 |------|------|
@@ -87,7 +104,7 @@ import { Aside, Steps, Badge, Card, CardGrid } from '@astrojs/starlight/componen
 
 | 모델 | 공식 컨텍스트 | 실효 사용량 |
 |------|-------------|-----------|
-| Claude Opus/Sonnet 4.6 | 1M 토큰 | ~600-700K |
+| Claude 계열 최신 frontier 모델 | 1M 토큰급 | ~600-700K |
 | GPT-5.4 | 1M 토큰 | ~600-700K |
 | Gemini 2.5 Pro | 1M 토큰 | ~600-700K |
 
@@ -354,12 +371,13 @@ users[3]{id,name,email}:
    Claude Code 세션에서 `/cost` 명령을 실행하여 현재 세션의 토큰 사용량을 확인한다. 10턴 대화 후 다시 측정하여 증가량을 기록한다.
 
    ```python
+   import os
    import anthropic
 
    def count_tokens(messages: list) -> int:
        client = anthropic.Anthropic()
        response = client.messages.count_tokens(
-           model="claude-opus-4-6",
+           model=os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5"),
            messages=messages
        )
        return response.input_tokens
@@ -401,7 +419,7 @@ users[3]{id,name,email}:
 1. **Context Rot은 실증적 현상이다** — Chroma 연구: 18개 모델 모두에서 입력이 길어질수록 정확도 하락. 중간 위치에서 30%+ 저하.
 2. **1M 토큰 창이 해결책이 아니다** — 큰 창 = Context Rot이 발생할 공간이 더 넓어질 뿐. 실효 사용량은 60-70%.
 3. **Compaction은 토큰 기반** — 모델 최대의 ~75% 도달 시 자동 트리거. 최근 4개 메시지 보존, 나머지 요약.
-4. **Ralph의 fresh context가 루프 간 최선** — 루프 내부에서는 compaction, 루프 사이에서는 완전 초기화 + 상태 파일 전달.
+4. **Ralph의 fresh context가 루프 간 기본 전략** — 루프 내부에서는 compaction, 루프 사이에서는 완전 초기화 + 상태 파일 전달.
 5. **토큰 40-70%가 낭비** — 모델 라우팅(Haiku 60-70%), prompt caching(read 0.1x), CLAUDE.md 200줄 이하로 절감.
 6. **Initializer 패턴** — JSON feature list + claude-progress.txt + init.sh 2-phase 구조로 상태를 결정론적으로 관리.
 

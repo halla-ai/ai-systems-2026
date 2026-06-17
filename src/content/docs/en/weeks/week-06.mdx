@@ -29,6 +29,23 @@ import { Aside, Steps, Badge, Tabs, TabItem, Card, CardGrid } from '@astrojs/sta
 
 ## Theory
 
+### Learning Objectives
+
+<CardGrid>
+  <Card title="Concepts" icon="open-book">
+    Use the "Sign" metaphor to explain instruction tuning, and split the work between permanent context (PROMPT.md / AGENTS.md) and one-off prompts.
+  </Card>
+  <Card title="Design" icon="seti:config">
+    Design instruction layers across mission / norms / pitfalls / examples, and decide which failure pattern each layer absorbs.
+  </Card>
+  <Card title="Implementation" icon="pencil">
+    Harden the project's PROMPT.md by encoding one or two recurring mistakes as explicit anti-patterns, and automate the failure → instruction-update cycle.
+  </Card>
+  <Card title="Operations" icon="rocket">
+    Monitor instruction drift and propose a quarterly housekeeping routine that re-reviews, rewrites, and prunes instructions.
+  </Card>
+</CardGrid>
+
 ### Why Instruction Tuning is Central in Week 6
 
 In Week 5 we learned how to keep context clean — auto-compaction, fresh context, state files. But even with clean context, **if the agent keeps making the same mistakes**, it's all for nothing.
@@ -232,7 +249,7 @@ If output styles change the **direction**, effort levels adjust the **depth**.
 | `low` | Simple lookups, type checks | Minimal | `claude --effort low "Return type of this function?"` |
 | `medium` | General code changes | Moderate | `claude --effort medium "Add tests"` |
 | `high` | Architecture design, complex debugging | High | `claude --effort high "Design async refactoring"` |
-| `max` | Maximum reasoning depth (Opus 4.6 exclusive) | Maximum (10x+) | `claude --effort max "Security vulnerability analysis"` |
+| `max` | Maximum reasoning depth (supported models only) | Maximum (10x+) | `claude --effort max "Security vulnerability analysis"` |
 
 Practical effort level use in Ralph loops: start with `low` in early iterations (exploration phase), then switch to `high` for core implementation — this optimizes token cost across the loop.
 
@@ -317,6 +334,10 @@ The `prompt` type Hook **delegates judgment** to the Haiku model. If it returns 
 - Hooks can only be defined in the user's settings.json — agents cannot modify their own Hooks
 </Aside>
 
+<Aside type="note" title="Markdown-SSOT Skill Runtime">
+Agent OS Runtime generalizes CLAUDE.md/PROMPT.md into `SKILL.md`. Skill frontmatter declares `triggers`, `allowed-tools`, and `schema_version`; the runtime validates it with `skill_frontmatter_v1` and scopes the available tools. Instruction tuning therefore becomes executable as [Markdown-SSOT plus hook-gated policy](/en/reference/agent-os-runtime/#contracts).
+</Aside>
+
 ---
 
 ### Instruction File Comparison Across Tools
@@ -393,7 +414,7 @@ Analyze recurring errors to design deterministic constraints, then use A/B testi
 
 ---
 
-## Key Summary
+## Key Takeaways
 
 1. **Instruction tuning = installing signs + pruning**: Includes not just adding but also pruning and reprioritizing to prevent Sign Fatigue
 2. **Do not generate instruction files with LLMs**: ETH Zurich research — 3% success rate decrease, 20% cost increase. Humans must write only "information the agent cannot infer by reasoning"

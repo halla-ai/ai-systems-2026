@@ -6,7 +6,7 @@ import starlight from '@astrojs/starlight';
 const SEMESTER_START = new Date('2026-03-03'); // 1주차 시작일
 const now = new Date();
 const weekNum = Math.max(1, Math.min(16,
-  Math.floor((now - SEMESTER_START) / (7 * 24 * 60 * 60 * 1000)) + 1
+  Math.floor((now.getTime() - SEMESTER_START.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
 ));
 const activePhase = weekNum <= 3 ? 1 : weekNum <= 6 ? 2 : weekNum <= 9 ? 3 : weekNum <= 12 ? 4 : 5;
 
@@ -171,6 +171,7 @@ export default defineConfig({
             { label: '참고자료 홈', translations: { en: 'Reference Home' }, link: '/reference' },
             { label: '개발 도구', translations: { en: 'Development Tools' }, link: '/reference/tools' },
             { label: 'AI 코딩 도구 선택', translations: { en: 'AI Coding Tool Selection' }, link: '/reference/tool-selection' },
+            { label: 'Agent OS Runtime', translations: { en: 'Agent OS Runtime' }, link: '/reference/agent-os-runtime' },
             { label: '논문 & 자료', translations: { en: 'Papers & Resources' }, link: '/reference/papers' },
             { label: '용어집', translations: { en: 'Glossary' }, link: '/reference/glossary' },
             { label: '인프라 가이드', translations: { en: 'Infrastructure Guide' }, link: '/reference/infrastructure' },

@@ -32,6 +32,23 @@ import { Aside, Steps, Tabs, TabItem, Badge, Card, CardGrid } from '@astrojs/sta
 
 ## 이론 (Theory)
 
+### 오늘의 학습 목표
+
+<CardGrid>
+  <Card title="개념 관점" icon="open-book">
+    전통적 SDLC와 에이전틱 SDLC의 구조적 차이를 4단계 비교표로 설명하고, 단일 에이전트가 막히는 지점을 식별한다.
+  </Card>
+  <Card title="설계 관점" icon="seti:config">
+    Lead·Planner·Worker·Reviewer·Operator 역할 분배와 핸드오프 토폴로지(linear / hub-spoke / mesh)를 비교해 우리 팀에 맞는 형태를 결정한다.
+  </Card>
+  <Card title="구현 관점" icon="pencil">
+    artifact 기반 핸드오프 계약(`spec.md`, `plan.md`, `worker_report.md`)을 작성하고 한 사이클을 실행한다.
+  </Card>
+  <Card title="운영 관점" icon="rocket">
+    multi-agent 파이프라인의 quality gate를 통합하고, "어느 역할에서 실패했는가"를 telemetry로 추적할 수 있게 만든다.
+  </Card>
+</CardGrid>
+
 ### 왜 7주차에서 멀티에이전트 SDLC인가
 
 6주차까지 우리는 **단일 에이전트**를 다뤘다 — CLAUDE.md로 행동을 규제하고(6주차), Context Rot을 방지하며(5주차), Ralph Loop로 반복 품질을 확보했다(4주차). 이제 질문은: **단일 에이전트의 한계는 어디인가?**
@@ -268,6 +285,10 @@ SWE-Bench Pro에서도 같은 패턴이 나타난다 — 동일한 모델(Claude
 
 sdlc-toolkit의 `/proceed` 파이프라인이 9단계 게이트드 실행을 구현한다.
 
+<Aside type="note" title="L8 Workflow Plane 미리보기">
+이 9단계 게이트드 파이프라인은 Agent OS Runtime의 [L8 Workflow Plane](/reference/agent-os-runtime/#workflow-plane-l8) 어휘로 보면 "ship-cycle" 한 사례다 — 각 단계가 **phase**, 검증·승인·재시도 규칙이 **policy**, 코더/리뷰어/QA가 **persona**, `spec.md`·TASK 파일이 **artifact**다. 예를 들어 리뷰 심각도에 따른 분기는 `severity-routing`, 3회 재시도 후 인간 에스컬레이션은 `loop-halt` 정책으로 표현한다. L8 어휘를 알면 캡스톤에서 brainstorm-cycle, fix-cycle, ralph-cycle 같은 다른 파이프라인을 같은 frame으로 설계할 수 있다.
+</Aside>
+
 <Tabs>
   <TabItem label="Phase Map">
     | Phase | 이름 | 에이전트 | 게이트 |
@@ -420,7 +441,7 @@ MCP는 Linux Foundation에 기부되어(2025년 12월) 산업 표준으로 자�
   </TabItem>
 </Tabs>
 
-이것은 위의 역할 분담 설계 — 코더 에이전트, QA 에이전트 — 를 **.md 파일 하나**로 선언적으로 구현하는 것이다. MCP를 통한 도구 접근 권한 관리와 동일한 원리가 `tools` 필드에 적용된다. sdlc-toolkit의 11개 스킬(`/spec`, `/architect`, `/validate`, `/review` 등)이 바로 이 Skills 시스템을 활용한 프로덕션 사례다.
+이것은 위의 역할 분담 설계 — 코더 에이전트, QA 에이전트 — 를 **.md 파일 하나**로 선언적으로 구현하는 방식이다. MCP를 통한 도구 접근 권한 관리와 동일한 원리가 `tools` 필드에 적용된다. sdlc-toolkit의 11개 스킬(`/spec`, `/architect`, `/validate`, `/review` 등)은 이 Skills 시스템을 활용한 프로덕션 사례다.
 
 #### `/simplify` — 내장 QA 에이전트
 
@@ -487,6 +508,10 @@ Boris는 단순한 마이그레이션에 `/batch`를, 복잡한 기능 개발에
 ### 아티팩트 기반 핸드오프 설계
 
 에이전트 간 통신의 핵심은 **구조화된 아티팩트**다. 자연어 메시지가 아니라, 스키마가 정의된 파일이 에이전트 사이를 이동한다.
+
+<Aside type="tip" title="Canonical Runtime Contract">
+이번 주의 handoff 기본형은 Agent OS Runtime의 **Lead → Planner → Worker → Reviewer** 흐름이다. Lead는 `lead_directive_v1`, Planner는 `plan_v1`, Worker는 `worker_report_v1`, Reviewer는 `review_result_v1`을 출력한다. 전체 계약과 role prompt는 [Agent OS Contracts](/reference/agent-os-runtime/#contracts)에 self-contained로 정리되어 있다.
+</Aside>
 
 <Tabs>
   <TabItem label="Requirement Spec">
@@ -640,10 +665,10 @@ PwC는 독립적인 judge agent를 추가하는 것만으로 에이전트 시스
 | **환각 전파** | 한 에이전트의 환각이 다음 에이전트의 ground truth | 각 phase의 독립 검증 게이트 |
 | **무한 정제 루프** | QA→Coder→QA가 수렴 없이 반복 | 반복 상한 (3회) + 인간 에스컬레이션 |
 | **상태 비동기화** | 병렬 에이전트 간 파일 충돌 | Git worktree 격리 — 각 에이전트 독립 작업 공간 |
-| **비용 폭발** | 통제 없는 에이전트 스폰 | 동시 실행 상한 (5개) + 모델 티어 라우팅 (탐색: haiku, 구현: sonnet, 리뷰: opus) |
+| **비용 급증** | 통제 없는 에이전트 스폰 | 동시 실행 상한 (5개) + 모델 티어 라우팅 (탐색: haiku, 구현: sonnet, 리뷰: opus) |
 
 <Aside type="caution" title="가장 위험한 실패 모드">
-**환각 전파**가 가장 탐지하기 어렵다. Planner가 존재하지 않는 API를 spec에 명시하면, Architect는 이를 사실로 받아들여 태스크를 분해하고, Coder는 해당 API를 호출하는 코드를 작성한다. **모든 에이전트가 자신의 단계에서는 올바르게 동작**했지만 결과물은 완전히 잘못되었다. 이것이 각 phase에 **독립 검증 게이트가 필요한** 근본 이유다.
+**환각 전파**가 가장 탐지하기 어렵다. Planner가 존재하지 않는 API를 spec에 명시하면, Architect는 이를 사실로 받아들여 태스크를 분해하고, Coder는 해당 API를 호출하는 코드를 작성한다. **각 에이전트는 자신의 단계 기준으로는 정상 동작**했지만 결과물은 잘못된다. 이것이 각 phase에 **독립 검증 게이트가 필요한** 근본 이유다.
 </Aside>
 
 ---

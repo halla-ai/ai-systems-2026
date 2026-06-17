@@ -1,0 +1,6 @@
+[]
+{"loop": 1, "status": "failed", "failed_count": 1, "duration": 0}
+{"loop": 2, "status": "failed", "failed_count": 2, "duration": 0}
+{"loop": 3, "status": "failed", "failed_count": 3, "duration": 0}
+{"loop": 4, "status": "failed", "failed_count": 4, "duration": 0}
+{"loop": 5, "status": "failed", "failed_count": 5, "duration": 0}

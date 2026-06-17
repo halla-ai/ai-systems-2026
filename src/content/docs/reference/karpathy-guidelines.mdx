@@ -1,0 +1,548 @@
+---
+title: "Karpathy Guidelines"
+description: LLM 코딩 에이전트의 4가지 행동 교정 원칙 — 가정 명시, 단순함 우선, 외과적 변경, 목표 중심 실행
+---
+
+import { Aside, Tabs, TabItem, Card, CardGrid } from '@astrojs/starlight/components';
+
+[Andrej Karpathy의 LLM 코딩 실수 관찰](https://x.com/karpathy/status/2015883857489522876)에서 도출된 행동 가이드라인. LLM 코딩 에이전트가 반복적으로 범하는 실수 패턴을 4가지 원칙으로 분류하고, 각각에 대한 교정 방법을 코드 예제와 함께 제시한다.
+
+<Aside type="note" title="트레이드오프">
+이 가이드라인은 속도보다 신중함 쪽으로 편향되어 있다. 단순한 작업에서는 판단에 따라 유연하게 적용한다.
+</Aside>
+
+<CardGrid>
+  <Card title="1. 가정을 먼저 밝혀라" icon="warning">
+    가정하지 말고, 혼란을 숨기지 말고, 트레이드오프를 제시하라.
+  </Card>
+  <Card title="2. 단순함 우선" icon="pencil">
+    문제를 해결하는 최소한의 코드. 투기적 설계 금지.
+  </Card>
+  <Card title="3. 외과적 변경" icon="seti:config">
+    요청된 것만 수정. 인접 코드 "개선" 금지.
+  </Card>
+  <Card title="4. 목표 중심 실행" icon="rocket">
+    성공 기준 정의 → 검증될 때까지 반복.
+  </Card>
+</CardGrid>
+
+---
+
+## 원칙 1: 가정을 먼저 밝혀라 (Think Before Coding)
+
+구현 전에 가정을 명시한다. 불확실하면 질문한다. 여러 해석이 가능하면 선택지를 제시하고 조용히 하나를 고르지 않는다. 더 단순한 방법이 존재하면 제안한다.
+
+### 예제 1: 숨겨진 가정
+
+**요청**: "사용자 데이터를 내보내는 기능 추가"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    def export_users(format='json'):
+        """Export all users to a file."""
+        users = User.query.all()
+
+        if format == 'json':
+            with open('users.json', 'w') as f:
+                json.dump([u.to_dict() for u in users], f)
+        elif format == 'csv':
+            with open('users.csv', 'w') as f:
+                writer = csv.DictWriter(f, fieldnames=['id', 'email', 'name'])
+                writer.writeheader()
+                writer.writerows([u.to_dict() for u in users])
+
+        return f"Exported {len(users)} users"
+    ```
+
+    **문제점:**
+    - 전체 사용자를 내보낸다고 가정 (페이지네이션? 개인정보?)
+    - 파일 저장 위치를 임의로 결정
+    - 포함할 필드를 확인 없이 결정
+    - CSV 필드명을 실제 데이터 구조 확인 없이 하드코딩
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```
+    구현 전에 확인이 필요합니다:
+
+    1. **범위**: 전체 사용자? 필터링된 부분집합? (개인정보 문제)
+    2. **형식**: "내보내기"가 의미하는 것:
+       - 브라우저에서 파일 다운로드?
+       - 백그라운드 작업 + 이메일 알림?
+       - 데이터를 반환하는 API 엔드포인트?
+    3. **필드**: 어떤 사용자 필드? (민감한 필드 존재 가능)
+    4. **볼륨**: 사용자 수 규모? (접근 방식에 영향)
+
+    가장 단순한 접근: 페이지네이션된 JSON을 반환하는 API 엔드포인트.
+    파일 기반 내보내기는 추가 정보가 필요합니다.
+    ```
+  </TabItem>
+</Tabs>
+
+### 예제 2: 다중 해석
+
+**요청**: "검색을 더 빠르게 만들어줘"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    # 어떤 "빠르게"인지 확인 없이
+    # 캐싱, DB 인덱스, 비동기 처리를 모두 추가
+    @lru_cache(maxsize=1000)
+    async def search(query: str) -> List[Result]:
+        # ... 200줄의 최적화 코드
+    ```
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```
+    "검색을 더 빠르게"는 여러 의미일 수 있습니다:
+
+    1. **응답 시간 단축** (500ms → 100ms 이하)
+       - DB 인덱스 추가, 빈번한 쿼리 캐싱
+       - 예상 소요: 2시간
+
+    2. **동시 검색 처리량 증가** (throughput)
+       - async/await, 커넥션 풀링
+       - 예상 소요: 4시간
+
+    3. **체감 속도 향상** (UX)
+       - 부분 결과 즉시 표시, 프로그레시브 로딩
+       - 예상 소요: 3시간
+
+    현재 검색은 일반 쿼리 기준 ~500ms입니다.
+    어떤 측면이 가장 중요한가요?
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 원칙 2: 단순함 우선 (Simplicity First)
+
+문제를 해결하는 최소한의 코드만 작성한다. 요청되지 않은 기능, 단일 사용 코드의 추상화, 불가능한 시나리오에 대한 에러 핸들링을 추가하지 않는다. 200줄로 작성했는데 50줄로 가능하면 다시 작성한다.
+
+### 예제 1: 과잉 추상화
+
+**요청**: "할인 계산 함수 추가"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    from abc import ABC, abstractmethod
+    from dataclasses import dataclass
+
+    class DiscountStrategy(ABC):
+        @abstractmethod
+        def calculate(self, amount: float) -> float:
+            pass
+
+    class PercentageDiscount(DiscountStrategy):
+        def __init__(self, percentage: float):
+            self.percentage = percentage
+
+        def calculate(self, amount: float) -> float:
+            return amount * (self.percentage / 100)
+
+    class FixedDiscount(DiscountStrategy):
+        def __init__(self, fixed_amount: float):
+            self.fixed_amount = fixed_amount
+
+        def calculate(self, amount: float) -> float:
+            return min(self.fixed_amount, amount)
+
+    @dataclass
+    class DiscountConfig:
+        strategy: DiscountStrategy
+        min_purchase: float = 0.0
+        max_discount: float = float('inf')
+
+    class DiscountCalculator:
+        def __init__(self, config: DiscountConfig):
+            self.config = config
+
+        def apply_discount(self, amount: float) -> float:
+            if amount < self.config.min_purchase:
+                return 0
+            discount = self.config.strategy.calculate(amount)
+            return min(discount, self.config.max_discount)
+
+    # 사용하려면 30줄 이상의 설정 코드 필요
+    ```
+
+    **문제점**: Strategy 패턴, Config 데이터클래스, ABC — 할인 계산 하나에 과잉 설계.
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```python
+    def calculate_discount(amount: float, percent: float) -> float:
+        """Calculate discount amount. percent should be 0-100."""
+        return amount * (percent / 100)
+
+    # 사용
+    discount = calculate_discount(100.0, 10.0)  # $10 할인
+    ```
+
+    **복잡도 추가 시점**: 실제로 여러 할인 유형이 필요해질 때. 그때 리팩터링한다.
+  </TabItem>
+</Tabs>
+
+### 예제 2: 투기적 기능
+
+**요청**: "사용자 설정을 DB에 저장"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    class PreferenceManager:
+        def __init__(self, db, cache=None, validator=None):
+            self.db = db
+            self.cache = cache or InMemoryCache()
+            self.validator = validator or DefaultValidator()
+
+        def save(self, user_id: int, prefs: dict,
+                 merge: bool = True,
+                 validate: bool = True,
+                 notify: bool = False) -> bool:
+            if validate:
+                errors = self.validator.validate(prefs)
+                if errors:
+                    raise ValidationError(errors)
+
+            existing = self.get(user_id) if merge else {}
+            if merge:
+                existing.update(prefs)
+                prefs = existing
+
+            self.db.execute(
+                "UPDATE users SET preferences = ? WHERE id = ?",
+                (json.dumps(prefs), user_id)
+            )
+
+            if self.cache:
+                self.cache.set(f"prefs:{user_id}", prefs)
+
+            if notify:
+                self.notify_preference_change(user_id, prefs)
+
+            return True
+    ```
+
+    **문제점**: 캐싱, 유효성 검사, 병합, 알림 — 모두 요청되지 않은 기능.
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```python
+    def save_preferences(db, user_id: int, preferences: dict):
+        """Save user preferences to database."""
+        db.execute(
+            "UPDATE users SET preferences = ? WHERE id = ?",
+            (json.dumps(preferences), user_id)
+        )
+    ```
+
+    **나중에 추가**: 캐싱(성능 문제 발생 시), 유효성 검사(잘못된 데이터 발견 시), 병합(요구사항 등장 시).
+  </TabItem>
+</Tabs>
+
+---
+
+## 원칙 3: 외과적 변경 (Surgical Changes)
+
+요청된 것만 수정한다. 인접 코드의 주석, 포맷팅, 스타일을 "개선"하지 않는다. 기존 스타일을 따른다. 자신의 변경이 만든 고아(orphan)는 정리하되, 기존 dead code는 언급만 한다.
+
+**테스트**: 모든 변경 줄이 사용자 요청에 직접 연결되어야 한다.
+
+### 예제 1: 드라이브바이 리팩터링
+
+**요청**: "빈 이메일이 validator를 크래시시키는 버그 수정"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```diff
+      def validate_user(user_data):
+    -     # Check email format
+    -     if not user_data.get('email'):
+    +     """Validate user data."""
+    +     email = user_data.get('email', '').strip()
+    +
+    +     # Validate email
+    +     if not email:
+              raise ValueError("Email required")
+    -
+    -     # Basic email validation
+    -     if '@' not in user_data['email']:
+    +     if '@' not in email or '.' not in email.split('@')[1]:
+              raise ValueError("Invalid email")
+
+    -     # Check username
+    -     if not user_data.get('username'):
+    +     # Validate username
+    +     username = user_data.get('username', '').strip()
+    +     if not username:
+              raise ValueError("Username required")
+    +     if len(username) < 3:
+    +         raise ValueError("Username too short")
+    +     if not username.isalnum():
+    +         raise ValueError("Username must be alphanumeric")
+
+          return True
+    ```
+
+    **문제점**: 이메일 유효성 검사 강화, username 유효성 추가, 주석 변경, docstring 추가 — 모두 요청 범위 밖.
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```diff
+      def validate_user(user_data):
+          # Check email format
+    -     if not user_data.get('email'):
+    +     email = user_data.get('email', '')
+    +     if not email or not email.strip():
+              raise ValueError("Email required")
+
+          # Basic email validation
+    -     if '@' not in user_data['email']:
+    +     if '@' not in email:
+              raise ValueError("Invalid email")
+
+          # Check username
+          if not user_data.get('username'):
+              raise ValueError("Username required")
+
+          return True
+    ```
+
+    **변경 범위**: 빈 이메일 처리를 수정하는 줄만.
+  </TabItem>
+</Tabs>
+
+### 예제 2: 스타일 드리프트
+
+**요청**: "업로드 함수에 로깅 추가"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```diff
+    - def upload_file(file_path, destination):
+    + def upload_file(file_path: str, destination: str) -> bool:
+    +     """Upload file to destination with logging."""
+    +     logger.info(f"Uploading {file_path} to {destination}")
+          try:
+    -         with open(file_path, 'rb') as f:
+    +         with open(file_path, "rb") as f:
+                  data = f.read()
+    -         response = requests.post(destination, files={'file': data})
+    +         response = requests.post(destination, files={"file": data})
+    +         success = response.status_code == 200
+    +         if success:
+    +             logger.info(f"Upload successful: {file_path}")
+    +         else:
+    +             logger.error(f"Upload failed: status={response.status_code}")
+    -         if response.status_code == 200:
+    -             return True
+    -         else:
+    -             return False
+    +         return success
+          except Exception as e:
+    -         print(f"Error: {e}")
+    +         logger.exception(f"Upload error for {file_path}: {e}")
+              return False
+    ```
+
+    **문제점**: 따옴표 스타일 변경(`''` → `""`), 타입 힌트 추가, docstring 추가, 불리언 반환 로직 변경.
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```diff
+    + import logging
+    +
+    + logger = logging.getLogger(__name__)
+    +
+      def upload_file(file_path, destination):
+    +     logger.info(f'Starting upload: {file_path}')
+          try:
+              with open(file_path, 'rb') as f:
+                  data = f.read()
+
+              response = requests.post(destination, files={'file': data})
+
+              if response.status_code == 200:
+    +             logger.info(f'Upload successful: {file_path}')
+                  return True
+              else:
+    +             logger.error(f'Upload failed: status={response.status_code}')
+                  return False
+          except Exception as e:
+    -         print(f"Error: {e}")
+    +         logger.exception(f'Upload error: {file_path}')
+              return False
+    ```
+
+    **유지한 것**: 작은따옴표, 타입 힌트 없음, 기존 불리언 패턴, 공백 스타일.
+  </TabItem>
+</Tabs>
+
+---
+
+## 원칙 4: 목표 중심 실행 (Goal-Driven Execution)
+
+작업을 검증 가능한 목표로 변환한다. 다단계 작업에서는 각 단계의 검증 방법을 먼저 정의한다.
+
+- "유효성 검사 추가" → "잘못된 입력에 대한 테스트 작성 → 통과시키기"
+- "버그 수정" → "재현 테스트 작성 → 통과시키기"
+- "리팩터링" → "테스트가 전후로 통과하는지 확인"
+
+### 예제 1: 모호한 vs 검증 가능한 목표
+
+**요청**: "인증 시스템 수정"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```
+    인증 시스템을 수정하겠습니다:
+    1. 코드 리뷰
+    2. 문제 식별
+    3. 개선 사항 적용
+    4. 변경 사항 테스트
+
+    [명확한 성공 기준 없이 변경을 시작]
+    ```
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```
+    "인증 수정"의 성공 기준을 정의해야 합니다.
+    어떤 구체적인 문제를 해결하나요?
+
+    만약 "비밀번호 변경 후에도 로그인이 유지되는" 문제라면:
+
+    계획:
+    1. 테스트 작성: 비밀번호 변경 → 기존 세션 무효화 확인
+       검증: 테스트 실패 (버그 재현)
+
+    2. 구현: 비밀번호 변경 시 세션 무효화
+       검증: 테스트 통과
+
+    3. 엣지 케이스: 다중 활성 세션, 동시 변경
+       검증: 추가 테스트 통과
+
+    4. 회귀 확인: 기존 인증 테스트 전체 통과
+       검증: 전체 테스트 스위트 green
+    ```
+  </TabItem>
+</Tabs>
+
+### 예제 2: 검증 포함 다단계 실행
+
+**요청**: "API에 rate limiting 추가"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    # Redis, 다중 전략, 설정 시스템, 모니터링을
+    # 300줄 단일 커밋으로 한번에 구현
+    # 명확한 검증 단계 없음
+    ```
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```
+    Rate limiting 계획:
+
+    1. 기본 인메모리 rate limiting (단일 엔드포인트)
+       검증:
+       - 테스트: 100 요청 → 처음 10개 성공, 나머지 429
+       - 수동: curl로 11회 호출 → rate limit 오류 확인
+
+    2. 미들웨어로 추출 (전체 엔드포인트 적용)
+       검증:
+       - 테스트: /users와 /posts에 rate limit 적용
+       - 기존 엔드포인트 테스트 통과
+
+    3. Redis 백엔드 (멀티 서버용)
+       검증:
+       - 테스트: 앱 재시작 후에도 rate limit 유지
+       - 테스트: 두 인스턴스가 카운터 공유
+
+    4. 설정 추가 (엔드포인트별 rate)
+       검증:
+       - 테스트: /search 10/min, /users 100/min
+       - 설정 파일 파싱 정상
+
+    각 단계가 독립적으로 검증 및 배포 가능합니다.
+    1단계부터 시작할까요?
+    ```
+  </TabItem>
+</Tabs>
+
+### 예제 3: 테스트 우선 검증
+
+**요청**: "중복 점수가 있을 때 정렬이 깨진다"
+
+<Tabs>
+  <TabItem label="흔한 실수">
+    ```python
+    # 버그 재현 없이 바로 정렬 로직 수정
+    def sort_scores(scores):
+        return sorted(scores, key=lambda x: (-x['score'], x['name']))
+    ```
+  </TabItem>
+  <TabItem label="올바른 접근">
+    ```python
+    # 1. 먼저 버그를 재현하는 테스트 작성
+    def test_sort_with_duplicate_scores():
+        scores = [
+            {'name': 'Alice', 'score': 100},
+            {'name': 'Bob', 'score': 100},
+            {'name': 'Charlie', 'score': 90},
+        ]
+
+        result = sort_scores(scores)
+
+        # 버그: 동점자 순서가 비결정적
+        assert result[0]['score'] == 100
+        assert result[1]['score'] == 100
+        assert result[2]['score'] == 90
+
+    # 검증: 10회 실행 → 비일관적 순서로 실패
+
+    # 2. 안정 정렬로 수정
+    def sort_scores(scores):
+        """점수 내림차순, 동점 시 이름 오름차순."""
+        return sorted(scores, key=lambda x: (-x['score'], x['name']))
+
+    # 검증: 테스트가 일관되게 통과
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 안티패턴 요약
+
+| 원칙 | 안티패턴 | 교정 방법 |
+|------|---------|----------|
+| 가정을 먼저 밝혀라 | 파일 형식, 필드, 범위를 조용히 가정 | 가정을 명시적으로 나열하고 확인 요청 |
+| 단순함 우선 | 할인 계산 하나에 Strategy 패턴 | 복잡도가 실제로 필요해질 때까지 단일 함수 |
+| 외과적 변경 | 버그 수정 중 따옴표 변경, 타입 힌트 추가 | 보고된 문제를 수정하는 줄만 변경 |
+| 목표 중심 실행 | "코드를 리뷰하고 개선하겠습니다" | "버그 X의 테스트 작성 → 통과 → 회귀 확인" |
+
+<Aside type="tip" title="핵심 인사이트">
+"과잉 설계"된 예제는 겉보기에 틀리지 않다 — 디자인 패턴과 베스트 프랙티스를 따르고 있다. 문제는 **타이밍**: 필요하기 전에 복잡도를 추가하면 코드 이해, 버그 발생 확률, 구현 시간, 테스트 난이도가 모두 증가한다. 좋은 코드는 오늘의 문제를 단순하게 해결하는 코드이지, 내일의 문제를 미리 해결하는 코드가 아니다.
+</Aside>
+
+---
+
+## PROMPT.md에 적용하기
+
+이 가이드라인을 [6주차 인스트럭션 튜닝](/weeks/week-06/)의 3-tier Boundary 시스템으로 변환할 수 있다:
+
+| Tier | 가이드라인 적용 예 |
+|------|------------------|
+| **Always Do** | 구현 전 가정 명시, 다단계 작업 시 검증 계획 수립 |
+| **Ask First** | 여러 해석이 가능한 경우, 인접 코드 변경이 필요한 경우 |
+| **Never Do** | 요청 범위 밖의 리팩터링, 투기적 기능 추가, 기존 스타일 변경 |
+
+<Aside type="caution" title="Hook으로 100% 시행">
+PROMPT.md의 인스트럭션은 ~80% 준수율이다. "Never Do" 항목 중 치명적인 것(예: 프로덕션 DB 직접 수정 금지)은 `PreToolUse` Hook으로 구현하여 100% 시행을 보장한다. 자세한 내용은 [6주차](/weeks/week-06/) 참조.
+</Aside>
+
+## 더 읽을거리
+
+- [Andrej Karpathy — LLM 코딩 실수 관찰](https://x.com/karpathy/status/2015883857489522876) — 원본
+- [6주차: 인스트럭션 튜닝](/weeks/week-06/) — Sign 메타포, 3-tier Boundary, Hook 시행
+- [How to Write a Great agents.md — GitHub Blog](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) — 2,500개 레포 분석
