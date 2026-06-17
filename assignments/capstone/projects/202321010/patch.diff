@@ -1,0 +1,14 @@
+--- a/testproject\utils.py
++++ b/testproject\utils.py
+@@ -5,4 +5,4 @@
+     b (int): Second number.
+ 
+ Returns:
+-    int: Sum of a and b.+    int
+--- a/testproject\utils.py
++++ b/testproject\utils.py
+@@ -4,4 +4,4 @@
+     text (str): Input text.
+ 
+ Returns:
+-    str: Uppercase text.+    str

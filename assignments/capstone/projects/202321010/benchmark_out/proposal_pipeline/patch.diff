@@ -1,0 +1,155 @@
+--- a/README.md
++++ b/README.md
+@@ -42,122 +42,122 @@
+ 
+ Uppercases key.
+ 
+-`type_01(data: str) -> dict`
++`type_01(data: str) -> list`
+ 
+ Doc says dict.
+ 
+-`type_02(n: int) -> str`
++`type_02(n: int) -> int`
+ 
+ Doc says str.
+ 
+-`type_03(x: float) -> int`
++`type_03(x: float) -> float`
+ 
+ Doc says int.
+ 
+-`type_04(items: list) -> list`
++`type_04(items: list) -> dict`
+ 
+ Doc says list, code dict ann.
+ 
+-`type_05(s: str) -> bool`
++`type_05(s: str) -> str`
+ 
+ Doc says bool.
+ 
+-`type_06(v: int) -> float`
++`type_06(v: int) -> int`
+ 
+ Doc says float.
+ 
+-`type_07(m: dict) -> str`
++`type_07(m: dict) -> dict`
+ 
+ Doc says str.
+ 
+-`type_08(a: int, b: int) -> int`
++`type_08(a: int, b: int) -> str`
+ 
+ Doc says int, returns str.
+ 
+-`type_09(f: float) -> None`
++`type_09(f: float) -> float`
+ 
+ Doc says None.
+ 
+-`type_10(b: bool) -> int`
++`type_10(b: bool) -> bool`
+ 
+ Doc says int.
+ 
+-`param_01(a: int, b: int) -> int`
++`param_01(a: int) -> int`
+ 
+ Doc has extra param.
+ 
+-`param_02(x: str) -> str`
++`param_02(x: str, y: str) -> str`
+ 
+ Code has extra param.
+ 
+-`param_03(user_id: int) -> int`
++`param_03(uid: int) -> int`
+ 
+ Param name differs.
+ 
+-`param_04(message: str) -> str`
++`param_04(msg: str) -> str`
+ 
+ Param name differs.
+ 
+-`param_05(count: int) -> int`
++`param_05(count: str) -> int`
+ 
+ Param type differs.
+ 
+-`param_06(rate: float) -> float`
++`param_06(rate: int) -> float`
+ 
+ Param type differs.
+ 
+-`param_07(payload: dict) -> dict`
++`param_07(payload: list) -> dict`
+ 
+ Param type differs.
+ 
+-`param_08(verbose: bool = False) -> bool`
++`param_08(verbose: bool = True) -> bool`
+ 
+ Default differs.
+ 
+-`param_09(limit: int = 10) -> int`
++`param_09(limit: int = 100) -> int`
+ 
+ Default differs.
+ 
+-`param_10(mode: str = 'r') -> str`
++`param_10(mode: str = 'w') -> str`
+ 
+ Default differs.
+ 
+-`struct_01(q: str) -> list[dict]`
++`struct_01(q: str) -> dict`
+ 
+ Doc list[dict], code dict.
+ 
+-`struct_02(id: int) -> dict`
++`struct_02(id: int) -> list`
+ 
+ Doc dict, code list.
+ 
+-`struct_03(n: int) -> list[dict]`
++`struct_03(n: int) -> list`
+ 
+ Doc list[dict], code list.
+ 
+-`struct_04(k: str) -> list[dict]`
++`struct_04(k: str) -> dict`
+ 
+ Doc list[dict], code dict.
+ 
+-`struct_05(page: int) -> list[dict]`
++`struct_05(page: int) -> dict`
+ 
+ Structure mismatch.
+ 
+-`struct_06(token: str) -> dict`
++`struct_06(token: str) -> list`
+ 
+ Structure mismatch.
+ 
+-`struct_07(rows: int) -> list[dict]`
++`struct_07(rows: int) -> dict`
+ 
+ Structure mismatch.
+ 
+-`struct_08(name: str) -> dict`
++`struct_08(name: str) -> list`
+ 
+ Structure mismatch.
+ 
+-`struct_09(size: int) -> list[dict]`
++`struct_09(size: int) -> list`
+ 
+ Structure mismatch.
+ 
+-`struct_10(code: str) -> dict`
++`struct_10(code: str) -> list`
+ 
+ Doc dict, code list annotation.

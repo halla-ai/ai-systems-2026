@@ -1,0 +1,233 @@
+============================================================
+DRY-RUN PR PREVIEW (no gh command executed)
+============================================================
+
+Base branch : main
+Head branch : docs/drift-fix
+Report      : C:\Users\K\Desktop\기말\benchmark_out\proposal_pipeline\drift_report.json
+Patch       : C:\Users\K\Desktop\기말\benchmark_out\proposal_pipeline\patch.diff
+
+------------------------------------------------------------
+TITLE
+------------------------------------------------------------
+docs: fix 30 documentation drift(s) in benchmark_project
+
+------------------------------------------------------------
+BODY
+------------------------------------------------------------
+## Summary
+
+- Functions scanned: **40**
+- Drifts detected: **30**
+- Patch file: `patch.diff`
+
+> This PR updates **documentation only**. Code changes are suggested as comments, not auto-applied.
+
+## Drift breakdown
+
+- `parameter_count_mismatch`: 2
+- `parameter_default_mismatch`: 3
+- `parameter_name_mismatch`: 2
+- `parameter_type_mismatch`: 3
+- `return_structure_mismatch`: 12
+- `return_type_mismatch`: 8
+
+## Structural drifts (auto doc patch)
+
+### `api.type_01` — `return_structure_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="returns dict", code="returns list"
+
+### `api.type_02` — `return_type_mismatch`
+- **Doc:** `str`
+- **Code:** `int`
+- **Evidence:** doc="returns str", code="returns int"
+
+### `api.type_03` — `return_type_mismatch`
+- **Doc:** `int`
+- **Code:** `float`
+- **Evidence:** doc="returns int", code="returns float"
+
+### `api.type_04` — `return_structure_mismatch`
+- **Doc:** `list`
+- **Code:** `dict`
+- **Evidence:** doc="returns list", code="returns dict"
+
+### `api.type_05` — `return_type_mismatch`
+- **Doc:** `bool`
+- **Code:** `str`
+- **Evidence:** doc="returns bool", code="returns str"
+
+### `api.type_06` — `return_type_mismatch`
+- **Doc:** `float`
+- **Code:** `int`
+- **Evidence:** doc="returns float", code="returns int"
+
+### `api.type_07` — `return_type_mismatch`
+- **Doc:** `str`
+- **Code:** `dict`
+- **Evidence:** doc="returns str", code="returns dict"
+
+### `api.type_08` — `return_type_mismatch`
+- **Doc:** `int`
+- **Code:** `str`
+- **Evidence:** doc="returns int", code="returns str"
+
+### `api.type_09` — `return_type_mismatch`
+- **Doc:** `None`
+- **Code:** `float`
+- **Evidence:** doc="returns None", code="returns float"
+
+### `api.type_10` — `return_type_mismatch`
+- **Doc:** `int`
+- **Code:** `bool`
+- **Evidence:** doc="returns int", code="returns bool"
+
+### `api.param_01` — `parameter_count_mismatch`
+- **Doc:** `2`
+- **Code:** `1`
+- **Evidence:** doc="a, b", code="a"
+
+### `api.param_02` — `parameter_count_mismatch`
+- **Doc:** `1`
+- **Code:** `2`
+- **Evidence:** doc="x", code="x, y"
+
+### `api.param_03` — `parameter_name_mismatch`
+- **Doc:** `user_id`
+- **Code:** `uid`
+- **Evidence:** doc="parameter 'user_id'", code="parameter 'uid'"
+
+### `api.param_04` — `parameter_name_mismatch`
+- **Doc:** `message`
+- **Code:** `msg`
+- **Evidence:** doc="parameter 'message'", code="parameter 'msg'"
+
+### `api.param_05` — `parameter_type_mismatch`
+- **Doc:** `int`
+- **Code:** `str`
+- **Evidence:** doc="count: int", code="count: str"
+
+### `api.param_06` — `parameter_type_mismatch`
+- **Doc:** `float`
+- **Code:** `int`
+- **Evidence:** doc="rate: float", code="rate: int"
+
+### `api.param_07` — `parameter_type_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="payload: dict", code="payload: list"
+
+### `api.param_08` — `parameter_default_mismatch`
+- **Doc:** `False`
+- **Code:** `True`
+- **Evidence:** doc="verbose=False", code="verbose=True"
+
+### `api.param_09` — `parameter_default_mismatch`
+- **Doc:** `10`
+- **Code:** `100`
+- **Evidence:** doc="limit=10", code="limit=100"
+
+### `api.param_10` — `parameter_default_mismatch`
+- **Doc:** `'r'`
+- **Code:** `'w'`
+- **Evidence:** doc="mode='r'", code="mode='w'"
+
+### `api.struct_01` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `dict`
+- **Evidence:** doc="returns list[dict]", code="returns dict"
+
+### `api.struct_02` — `return_structure_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="returns dict", code="returns list"
+
+### `api.struct_03` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `list`
+- **Evidence:** doc="returns list[dict]", code="returns list"
+
+### `api.struct_04` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `dict`
+- **Evidence:** doc="returns list[dict]", code="returns dict"
+
+### `api.struct_05` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `dict`
+- **Evidence:** doc="returns list[dict]", code="returns dict"
+
+### `api.struct_06` — `return_structure_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="returns dict", code="returns list"
+
+### `api.struct_07` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `dict`
+- **Evidence:** doc="returns list[dict]", code="returns dict"
+
+### `api.struct_08` — `return_structure_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="returns dict", code="returns list"
+
+### `api.struct_09` — `return_structure_mismatch`
+- **Doc:** `list[dict]`
+- **Code:** `list`
+- **Evidence:** doc="returns list[dict]", code="returns list"
+
+### `api.struct_10` — `return_structure_mismatch`
+- **Doc:** `dict`
+- **Code:** `list`
+- **Evidence:** doc="returns dict", code="returns list"
+
+## Governance decisions
+
+- `api.type_01` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_02` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_03` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_04` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_05` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_06` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_07` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_08` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_09` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.type_10` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_01` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_02` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_03` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_04` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_05` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_06` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_07` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_08` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_09` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.param_10` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_01` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_02` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_03` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_04` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_05` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_06` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_07` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_08` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_09` → **update_doc** (Typing annotations present; code takes priority.)
+- `api.struct_10` → **update_doc** (Typing annotations present; code takes priority.)
+
+## Out of scope
+
+- Automatic **code** modification (suggestions only)
+- Auto-fix of semantic candidates (HITL required)
+
+## Next steps (TODO)
+
+- Run `gh pr create` with this title/body after human review
+- Apply `patch.diff` to README/docstring only
+- Require human approval before merge (HOTL)
+
+============================================================
+Use --create-pr --hotl-approved for real gh pr create
+============================================================

@@ -1,0 +1,168 @@
+{
+  "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\sample_project",
+  "functions_scanned": 3,
+  "drift_count": 3,
+  "drifts": [
+    {
+      "function": "parse_json",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict: Parsed data",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict: Parsed data",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "greet",
+      "module": "api",
+      "drift_type": "parameter_default_mismatch",
+      "doc_value": "False",
+      "code_value": "True",
+      "confidence": 0.85,
+      "evidence": {
+        "doc": "loud=False",
+        "code": "loud=True"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "fetch_items",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]: Item list",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]: Item list",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    }
+  ],
+  "decisions": [
+    {
+      "function": "parse_json",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Tests exist; code is the source of truth.",
+      "has_tests": true,
+      "has_typing": true,
+      "has_docstring_contract": true
+    },
+    {
+      "function": "greet",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Tests exist; code is the source of truth.",
+      "has_tests": true,
+      "has_typing": true,
+      "has_docstring_contract": true
+    },
+    {
+      "function": "fetch_items",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": true
+    }
+  ],
+  "code_suggestions": [],
+  "run_id": "c25877d4-3bd0-4408-af71-dea1fd2ffc02",
+  "qa_passed": true,
+  "qa_iterations": 1,
+  "collaboration_trace": [
+    {
+      "task_id": "15cdb5c1-dc26-418f-ace2-ed1898a897ad",
+      "agent_name": "lead",
+      "role": "lead",
+      "state_from": "planned",
+      "state_to": "in_progress",
+      "note": "Run initiated"
+    },
+    {
+      "task_id": "ceeeb6c0-93c4-4f77-a13c-be751756223d",
+      "agent_name": "doc_analyzer",
+      "role": "worker",
+      "state_from": "in_progress",
+      "state_to": "worker_done",
+      "note": "Doc specs extracted"
+    },
+    {
+      "task_id": "c14d7f23-343e-40ee-82b5-253386a2bb27",
+      "agent_name": "drift_detector",
+      "role": "worker",
+      "state_from": "worker_done",
+      "state_to": "under_review",
+      "note": "Ready for review"
+    },
+    {
+      "task_id": "d26ca958-7b9c-4cd8-884e-2fb5e7512df1",
+      "agent_name": "reviewer",
+      "role": "reviewer",
+      "state_from": "under_review",
+      "state_to": "approved",
+      "note": "Review passed"
+    }
+  ],
+  "provider_profile": "static-ast-v1",
+  "hook_results": [
+    {
+      "hook_name": "secret_scan",
+      "passed": true,
+      "action": "continue",
+      "message": "No secrets detected in patch/report."
+    },
+    {
+      "hook_name": "doc_only_patch",
+      "passed": true,
+      "action": "continue",
+      "message": "Patch appears documentation-only."
+    },
+    {
+      "hook_name": "approval",
+      "passed": true,
+      "action": "continue",
+      "message": "Approval check passed (or no human_review decisions)."
+    },
+    {
+      "hook_name": "escalation",
+      "passed": true,
+      "action": "continue",
+      "message": "No escalation needed."
+    }
+  ],
+  "review_verdict": {
+    "task_id": "d26ca958-7b9c-4cd8-884e-2fb5e7512df1",
+    "run_id": "c25877d4-3bd0-4408-af71-dea1fd2ffc02",
+    "reviewer_role": "reviewer",
+    "verdict": "approved",
+    "rubric_scores": {
+      "doc_patch_safety": 1.0,
+      "governance_applied": 1.0
+    },
+    "comments": "Automated reviewer verdict based on governance + hooks.",
+    "requires_hotl": false
+  },
+  "llm_meta": {
+    "enabled": false,
+    "provider": "static-ast-v1",
+    "drift_review": {
+      "llm_used": false,
+      "removed": 1
+    }
+  },
+  "pr_url": null,
+  "doc_spec_path": "eval_out\\run_3\\doc_spec.json",
+  "code_spec_path": "eval_out\\run_3\\code_spec.json",
+  "approval_gate_path": "eval_out\\run_3\\approval_gate.json",
+  "fix_invocations": 1,
+  "hotl_cycles": 1,
+  "hotl_waited": false,
+  "hotl_timed_out": false
+}

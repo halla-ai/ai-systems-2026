@@ -1,0 +1,72 @@
+{
+  "project": "tests\\fixtures\\sample_project",
+  "runs": 3,
+  "repeatable": true,
+  "drift_count_stable": true,
+  "drift_counts": [
+    3,
+    3,
+    3
+  ],
+  "qa_all_passed": true,
+  "run_rows": [
+    {
+      "run_index": 1,
+      "run_id": "06e4adbd-7299-4a49-8b06-778c7178992f",
+      "drift_count": 3,
+      "functions_scanned": 3,
+      "qa_passed": true,
+      "hotl_cycles": 1,
+      "review_verdict": "approved",
+      "llm_cost_usd": 0.0,
+      "output_dir": "eval_out\\run_1"
+    },
+    {
+      "run_index": 2,
+      "run_id": "88dd58f5-44dc-4b96-aa6e-d7b54ac7c29c",
+      "drift_count": 3,
+      "functions_scanned": 3,
+      "qa_passed": true,
+      "hotl_cycles": 1,
+      "review_verdict": "approved",
+      "llm_cost_usd": 0.0,
+      "output_dir": "eval_out\\run_2"
+    },
+    {
+      "run_index": 3,
+      "run_id": "c25877d4-3bd0-4408-af71-dea1fd2ffc02",
+      "drift_count": 3,
+      "functions_scanned": 3,
+      "qa_passed": true,
+      "hotl_cycles": 1,
+      "review_verdict": "approved",
+      "llm_cost_usd": 0.0,
+      "output_dir": "eval_out\\run_3"
+    }
+  ],
+  "fixture_eval": {
+    "scored": true,
+    "drift_count": 3,
+    "min_drift_count": 3,
+    "min_drift_met": true,
+    "required_functions": [
+      "greet",
+      "parse_json"
+    ],
+    "functions_found": [
+      "greet",
+      "parse_json"
+    ],
+    "function_recall": 1.0,
+    "required_types": [
+      "parameter_default_mismatch",
+      "return_structure_mismatch"
+    ],
+    "types_found": [
+      "parameter_default_mismatch",
+      "return_structure_mismatch"
+    ],
+    "type_recall": 1.0,
+    "overall_pass": true
+  }
+}

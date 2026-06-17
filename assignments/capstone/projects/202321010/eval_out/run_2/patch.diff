@@ -1,0 +1,39 @@
+--- a/README.md
++++ b/README.md
+@@ -2,14 +2,14 @@
+ 
+ ## Functions
+ 
+-`parse_json(data: str) -> dict`
++`parse_json(data: str) -> list`
+ 
+ Parses JSON string and returns a dictionary.
+ 
+-`greet(name: str, loud: bool = False) -> str`
++`greet(name: str, loud: bool = True) -> str`
+ 
+ Returns a greeting message.
+ 
+-`fetch_items(limit: int) -> list[dict]`
++`fetch_items(limit: int) -> dict`
+ 
+ Fetches items from storage.
+--- a/api.py
++++ b/api.py
+@@ -8,7 +8,7 @@
+         data (str): JSON string.
+ 
+     Returns:
+-        dict: Parsed data.
++        list
+     """
+     return []
+ 
+@@ -33,6 +33,6 @@
+         limit (int): Max items.
+ 
+     Returns:
+-        list[dict]: Item list.
++        dict
+     """
+     return {"items": []}

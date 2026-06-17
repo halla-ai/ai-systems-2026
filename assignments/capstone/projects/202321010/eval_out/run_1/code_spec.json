@@ -1,0 +1,69 @@
+{
+  "kind": "code_spec",
+  "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\sample_project",
+  "count": 3,
+  "functions": [
+    {
+      "name": "parse_json",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "data",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 4,
+      "source": "code"
+    },
+    {
+      "name": "greet",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "name",
+          "annotation": "str",
+          "default": null
+        },
+        {
+          "name": "loud",
+          "annotation": "bool",
+          "default": "True"
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 16,
+      "source": "code"
+    },
+    {
+      "name": "fetch_items",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "limit",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 29,
+      "source": "code"
+    }
+  ]
+}

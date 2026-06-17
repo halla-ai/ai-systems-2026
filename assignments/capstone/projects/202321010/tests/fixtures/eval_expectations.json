@@ -1,0 +1,10 @@
+{
+  "sample_project": {
+    "min_drift_count": 3,
+    "note": "parse_json + greet + fetch_items core drifts after heuristic review",
+    "min_function_recall": 1.0,
+    "min_type_recall": 0.5,
+    "required_functions": ["parse_json", "greet"],
+    "required_types": ["return_structure_mismatch", "parameter_default_mismatch"]
+  }
+}

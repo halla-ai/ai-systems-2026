@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review_verdict",
+  "title": "ReviewVerdict",
+  "type": "object",
+  "required": ["task_id", "run_id", "verdict", "reviewer_role"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "reviewer_role": { "type": "string", "enum": ["reviewer", "lead"] },
+    "verdict": {
+      "type": "string",
+      "enum": ["approved", "rejected", "escalate", "human_review_required"]
+    },
+    "rubric_scores": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "comments": { "type": "string" },
+    "requires_hotl": { "type": "boolean" }
+  }
+}

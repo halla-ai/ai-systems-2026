@@ -1,0 +1,13 @@
+{
+  "task_id": "5e55bfc0-854d-4312-b2b1-ce21f36a5d0e",
+  "run_id": "ed8cc457-9084-4133-aa1a-b3190758f85d",
+  "reviewer_role": "reviewer",
+  "verdict": "escalate",
+  "rubric_scores": {
+    "doc_patch_safety": 0.0,
+    "governance_applied": 1.0
+  },
+  "comments": "Automated reviewer verdict based on governance + hooks.",
+  "requires_hotl": false,
+  "abort_reason": "Potential secrets detected: ['token: str)', 'token: str)']"
+}

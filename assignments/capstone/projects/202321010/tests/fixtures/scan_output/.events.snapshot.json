@@ -1,0 +1,174 @@
+{
+  "run_id": "5a5a4853-ca74-427f-89cf-14c1a91b7a3e",
+  "timestamp": "2026-06-10T05:58:39.424563+00:00",
+  "event_count": 12,
+  "last_event_id": "d77e139a-1f4b-4ef4-a885-72b00cda2b7c",
+  "state": {
+    "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\sample_project",
+    "functions_scanned": 3,
+    "drift_count": 3,
+    "drifts": [
+      {
+        "function": "parse_json",
+        "module": "api",
+        "drift_type": "return_structure_mismatch",
+        "doc_value": "dict: Parsed data",
+        "code_value": "list",
+        "confidence": 0.91,
+        "evidence": {
+          "doc": "returns dict: Parsed data",
+          "code": "returns list"
+        },
+        "source_file": "api.py"
+      },
+      {
+        "function": "greet",
+        "module": "api",
+        "drift_type": "parameter_default_mismatch",
+        "doc_value": "False",
+        "code_value": "True",
+        "confidence": 0.85,
+        "evidence": {
+          "doc": "loud=False",
+          "code": "loud=True"
+        },
+        "source_file": "api.py"
+      },
+      {
+        "function": "fetch_items",
+        "module": "api",
+        "drift_type": "return_structure_mismatch",
+        "doc_value": "list[dict]: Item list",
+        "code_value": "dict",
+        "confidence": 0.91,
+        "evidence": {
+          "doc": "returns list[dict]: Item list",
+          "code": "returns dict"
+        },
+        "source_file": "api.py"
+      }
+    ],
+    "decisions": [
+      {
+        "function": "parse_json",
+        "module": "api",
+        "direction": "update_doc",
+        "reason": "Tests exist; code is the source of truth.",
+        "has_tests": true,
+        "has_typing": true,
+        "has_docstring_contract": true
+      },
+      {
+        "function": "greet",
+        "module": "api",
+        "direction": "update_doc",
+        "reason": "Tests exist; code is the source of truth.",
+        "has_tests": true,
+        "has_typing": true,
+        "has_docstring_contract": true
+      },
+      {
+        "function": "fetch_items",
+        "module": "api",
+        "direction": "update_doc",
+        "reason": "Typing annotations present; code takes priority.",
+        "has_tests": false,
+        "has_typing": true,
+        "has_docstring_contract": true
+      }
+    ],
+    "code_suggestions": [],
+    "run_id": "5a5a4853-ca74-427f-89cf-14c1a91b7a3e",
+    "qa_passed": true,
+    "qa_iterations": 1,
+    "collaboration_trace": [
+      {
+        "task_id": "b0211623-87ef-4dad-b3b6-b9d9ec9f5aea",
+        "agent_name": "lead",
+        "role": "lead",
+        "state_from": "planned",
+        "state_to": "in_progress",
+        "note": "Run initiated"
+      },
+      {
+        "task_id": "fc40b0db-b223-41c3-9ab5-a5cb4410d833",
+        "agent_name": "doc_analyzer",
+        "role": "worker",
+        "state_from": "in_progress",
+        "state_to": "worker_done",
+        "note": "Doc specs extracted"
+      },
+      {
+        "task_id": "fb308c2f-5b71-4b96-a103-6f7d2d5efd03",
+        "agent_name": "drift_detector",
+        "role": "worker",
+        "state_from": "worker_done",
+        "state_to": "under_review",
+        "note": "Ready for review"
+      },
+      {
+        "task_id": "bfe2e6ab-a67a-4fa3-a1ed-c7ae7e279475",
+        "agent_name": "reviewer",
+        "role": "reviewer",
+        "state_from": "under_review",
+        "state_to": "approved",
+        "note": "Review passed"
+      }
+    ],
+    "provider_profile": "static-ast-v1",
+    "hook_results": [
+      {
+        "hook_name": "secret_scan",
+        "passed": true,
+        "action": "continue",
+        "message": "No secrets detected in patch/report."
+      },
+      {
+        "hook_name": "doc_only_patch",
+        "passed": true,
+        "action": "continue",
+        "message": "Patch appears documentation-only."
+      },
+      {
+        "hook_name": "approval",
+        "passed": true,
+        "action": "continue",
+        "message": "Approval check passed (or no human_review decisions)."
+      },
+      {
+        "hook_name": "escalation",
+        "passed": true,
+        "action": "continue",
+        "message": "No escalation needed."
+      }
+    ],
+    "review_verdict": {
+      "task_id": "bfe2e6ab-a67a-4fa3-a1ed-c7ae7e279475",
+      "run_id": "5a5a4853-ca74-427f-89cf-14c1a91b7a3e",
+      "reviewer_role": "reviewer",
+      "verdict": "approved",
+      "rubric_scores": {
+        "doc_patch_safety": 1.0,
+        "governance_applied": 1.0
+      },
+      "comments": "Automated reviewer verdict based on governance + hooks.",
+      "requires_hotl": false
+    },
+    "llm_meta": {
+      "enabled": false,
+      "provider": "static-ast-v1",
+      "drift_review": {
+        "llm_used": false,
+        "removed": 1
+      }
+    },
+    "pr_url": null,
+    "doc_spec_path": "tests\\fixtures\\scan_output\\doc_spec.json",
+    "code_spec_path": "tests\\fixtures\\scan_output\\code_spec.json",
+    "approval_gate_path": "tests\\fixtures\\scan_output\\approval_gate.json",
+    "fix_invocations": 1,
+    "hotl_cycles": 1,
+    "hotl_waited": false,
+    "hotl_timed_out": false
+  }
+}

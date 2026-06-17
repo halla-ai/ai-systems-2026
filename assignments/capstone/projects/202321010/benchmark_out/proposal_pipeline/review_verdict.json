@@ -1,0 +1,12 @@
+{
+  "task_id": "bb0deb11-ea9d-4b72-a32c-a28bfc9a1eb3",
+  "run_id": "cfb31f22-9c2e-4ac8-81d8-114f86c45e2c",
+  "reviewer_role": "reviewer",
+  "verdict": "approved",
+  "rubric_scores": {
+    "doc_patch_safety": 1.0,
+    "governance_applied": 1.0
+  },
+  "comments": "Automated reviewer verdict based on governance + hooks.",
+  "requires_hotl": false
+}
