@@ -45,3 +45,7 @@ node_modules
 *.pdf
 __pycache__/
 *.pyc
+
+# Python bytecode (was tracked by mistake; build artifact)
+__pycache__/
+*.py[cod]
