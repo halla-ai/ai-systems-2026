@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plan",
+  "type": "object",
+  "description": "Minimum contract for plan messages exchanged between agents.",
+  "properties": {
+    "task_id": { "type": "string" },
+    "objective": { "type": "string" },
+    "subtasks": { "type": "array", "items": { "type": "object" } },
+    "constraints": { "type": "object" }
+  },
+  "required": ["task_id", "objective", "subtasks"]
+}

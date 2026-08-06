@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WorkerReport",
+  "type": "object",
+  "description": "Minimum contract for worker report messages.",
+  "properties": {
+    "task_id": { "type": "string" },
+    "worker": { "type": "string" },
+    "status": { "type": "string", "enum": ["complete", "partial", "blocked"] },
+    "report": { "type": "string" }
+  },
+  "required": ["task_id", "worker", "status"]
+}

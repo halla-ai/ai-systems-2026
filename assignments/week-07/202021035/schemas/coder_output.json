@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CoderOutput",
+  "type": "object",
+  "required": ["task_id", "changes", "test_command", "status"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "action", "description"],
+        "properties": {
+          "file": { "type": "string" },
+          "action": { "enum": ["create", "modify", "delete"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "test_command": { "type": "string" },
+    "status": { "enum": ["complete", "partial", "blocked"] },
+    "blocker": { "type": "string" }
+  }
+}
