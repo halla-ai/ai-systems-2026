@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nudge Agent Demo - psf/requests</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f6f8fa; margin: 0; padding: 20px; color: #24292f; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border: 1px solid #d0d7de; border-radius: 6px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        .header { padding: 16px; background: #f6f8fa; border-bottom: 1px solid #d0d7de; }
+        .pr-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+        .pr-meta { font-size: 14px; color: #57606a; }
+        .label { background: #2da44e; color: white; padding: 4px 12px; border-radius: 2em; font-size: 12px; font-weight: 600; margin-right: 8px; }
+        .timeline { padding: 16px; }
+        .comment { display: flex; margin-bottom: 24px; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+        .comment.visible { opacity: 1; transform: translateY(0); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; margin-right: 12px; flex-shrink: 0; overflow: hidden; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .comment-box { flex-grow: 1; border: 1px solid #d0d7de; border-radius: 6px; }
+        .comment-header { padding: 8px 16px; background: #f6f8fa; border-bottom: 1px solid #d0d7de; font-size: 12px; display: flex; justify-content: space-between; }
+        .comment-body { padding: 16px; font-size: 14px; line-height: 1.5; }
+        .agent-badge { background: #ddf4ff; color: #0969da; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: 11px; margin-left: 8px; border: 1px solid #54aeff66; }
+        .typing::after { content: '|'; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .status-badge { display: flex; align-items: center; margin-top: 10px; font-size: 12px; font-weight: 600; }
+        .status-icon { width: 16px; height: 16px; margin-right: 8px; border-radius: 50%; }
+        .success { color: #1a7f37; } .fail { color: #cf222e; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="pr-title">Refactor DigestAuth handling for improved security <span style="color:#57606a; font-weight: 300;">#5821</span></div>
+        <div class="pr-meta">
+            <span class="label">Open</span>
+            <strong>kennethreitz</strong> wants to merge 1 commit into <span style="background:#ddf4ff; padding: 2px 5px; border-radius: 3px; font-family: monospace;">main</span> from <span style="background:#ddf4ff; padding: 2px 5px; border-radius: 3px; font-family: monospace;">refactor/auth</span>
+        </div>
+    </div>
+
+    <div class="timeline" id="timeline">
+        <!-- Comments will be injected here -->
+    </div>
+</div>
+
+<script>
+    const events = [
+        {
+            type: 'agent',
+            name: 'NudgeAgent (Interviewer)',
+            avatar: 'https://cdn-icons-png.flaticon.com/512/4712/4712035.png',
+            body: "@kennethreitz님, 안녕하세요! RiskEvaluator 분석 결과 이 모듈(requests/auth.py)은 현재 창시자님께 지식이 100% 집중되어 있습니다. 이번 Refactor의 핵심 설계 의도와 변경된 보안 로직을 팀원들이 이해할 수 있게 요약 부탁드립니다.",
+            delay: 1000
+        },
+        {
+            type: 'user',
+            name: 'kennethreitz',
+            avatar: 'https://avatars.githubusercontent.com/u/119893?v=4',
+            body: "그냥 보안 패치입니다.",
+            delay: 2000
+        },
+        {
+            type: 'agent',
+            name: 'NudgeAgent (GateKeeper)',
+            avatar: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
+            body: "<span class='fail'>✖ 검증 실패: 답변의 정보 밀도가 낮습니다.</span><br><br>답변 감사합니다. 하지만 지식 공유를 위해 구체적으로 어떤 취약점(예: RFC 7616 표준 준수 여부)을 방어하기 위한 구조 변경인지 보충 설명 부탁드립니다! 이 정보가 있어야 병합(Merge)이 승인됩니다.",
+            delay: 2000
+        },
+        {
+            type: 'user',
+            name: 'kennethreitz',
+            avatar: 'https://avatars.githubusercontent.com/u/119893?v=4',
+            body: "아, 네. RFC 7616의 SHA-256 지원을 추가하여 기존 MD5의 취약점을 보완했습니다. 기존 MD5 기반 클라이언트와의 하위 호환성을 유지하기 위해 내부 인터페이스는 그대로 두되, 하위 로직만 캡슐화하여 교체했습니다.",
+            delay: 3000
+        },
+        {
+            type: 'agent',
+            name: 'NudgeAgent (GateKeeper)',
+            avatar: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
+            body: "<span class='success'>✔ 검증 성공: 고품질 Rationale 추출 완료.</span><br><br>명확한 설명 감사합니다! 해당 내용은 KNOWLEDGE.md에 자동 요약되어 반영되었습니다. 이제 리뷰어 @lukasa님께 지식 전파 알림을 전송합니다.",
+            delay: 2000
+        }
+    ];
+
+    const timeline = document.getElementById('timeline');
+
+    async function typeBody(element, text) {
+        element.classList.add('typing');
+        for (let i = 0; i < text.length; i++) {
+            if (text.substr(i, 4) === '<br>') {
+                element.innerHTML += '<br>';
+                i += 3;
+            } else if (text.substr(i, 6).includes('<span')) {
+                // Handle tags
+                let tagEnd = text.indexOf('>', i) + 1;
+                let spanContentEnd = text.indexOf('</span>', tagEnd) + 7;
+                element.innerHTML += text.substring(i, spanContentEnd);
+                i = spanContentEnd - 1;
+            } else {
+                element.innerHTML += text[i];
+            }
+            await new Promise(r => setTimeout(r, 20));
+        }
+        element.classList.remove('typing');
+    }
+
+    async function runDemo() {
+        for (const ev of events) {
+            await new Promise(r => setTimeout(r, ev.delay));
+            
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerHTML = `
+                <div class="avatar"><img src="${ev.avatar}"></div>
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <div><strong>${ev.name}</strong> ${ev.type === 'agent' ? '<span class="agent-badge">Agent</span>' : ''} <span style="color:#57606a; margin-left:8px;">commented now</span></div>
+                        <div style="color:#57606a;">···</div>
+                    </div>
+                    <div class="comment-body" id="body-${events.indexOf(ev)}"></div>
+                </div>
+            `;
+            timeline.appendChild(comment);
+            
+            // Trigger animation
+            setTimeout(() => comment.classList.add('visible'), 50);
+            
+            await typeBody(document.getElementById(`body-${events.indexOf(ev)}`), ev.body);
+            
+            // Scroll to bottom
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    }
+
+    window.onload = runDemo;
+</script>
+
+</body>
+</html>

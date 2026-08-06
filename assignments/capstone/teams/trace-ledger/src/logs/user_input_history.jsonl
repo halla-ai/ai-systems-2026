@@ -1,0 +1,314 @@
+React에서 useEffect로 API 호출하는데 계속 무한루프 돌아
+ 
+useEffect 무한루프는 의존성 배열(dependency array) 문제예요. 코드 보여주시면 바로 잡아드릴게요!
+ 
+일반적인 원인은 이래요:
+ 
+```javascript
+// ❌ 무한루프 - 의존성 배열 없음
+useEffect(() => {
+  fetchData();
+}); // 매 렌더링마다 실행
+ 
+// ❌ 무한루프 - 상태를 의존성에 넣고 그 상태를 업데이트
+useEffect(() => {
+  setData(data + 1); // data 바뀜 → 리렌더링 → useEffect 재실행
+}, [data]);
+ 
+// ✅ 마운트 시 한 번만 실행
+useEffect(() => {
+  fetchData();
+}, []); // 빈 배열
+```
+ 
+현재 코드가 어떻게 생겼어요?
+ 
+---
+ 
+이렇게 썼는데
+ 
+```javascript
+const [user, setUser] = useState(null);
+ 
+useEffect(() => {
+  fetch('/api/user')
+    .then(res => res.json())
+    .then(data => setUser(data));
+}, [user]);
+```
+ 
+아 바로 보여요! user를 의존성 배열에 넣었는데, useEffect 안에서 setUser로 user를 바꾸고 있으니까 무한루프가 돌아요.
+ 
+```
+user 없음 → useEffect 실행 → setUser(data) → user 바뀜
+→ useEffect 재실행 → setUser(data) → user 바뀜 → 무한반복
+```
+ 
+🛠️ 수정:
+ 
+```javascript
+const [user, setUser] = useState(null);
+ 
+useEffect(() => {
+  fetch('/api/user')
+    .then(res => res.json())
+    .then(data => setUser(data));
+}, []); // user 제거, 빈 배열로
+```
+ 
+마운트 시 한 번만 실행하면 돼요.
+ 
+---
+ 
+됐어. 근데 이번엔 로딩 상태 보여주고싶어. 데이터 오기 전에 스피너 띄우려고
+ 
+🛠️ 로딩 상태 추가:
+ 
+```javascript
+const [user, setUser] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+ 
+useEffect(() => {
+  setLoading(true);
+  fetch('/api/user')
+    .then(res => {
+      if (!res.ok) throw new Error('Failed to fetch');
+      return res.json();
+    })
+    .then(data => {
+      setUser(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      setError(err.message);
+      setLoading(false);
+    });
+}, []);
+ 
+if (loading) return <Spinner />;
+if (error) return <div>에러: {error}</div>;
+return <div>{user?.name}</div>;
+```
+ 
+💡 loading, error, data 세 가지 상태를 같이 관리하는 게 표준 패턴이에요.
+ 
+---
+ 
+근데 컴포넌트 여러 곳에서 같은 API 호출하는데 매번 이 코드 복붙해야해?
+ 
+그러면 커스텀 훅으로 분리하면 돼요. 로직을 재사용할 수 있게요.
+ 
+🛠️ useFetch 커스텀 훅:
+ 
+```javascript
+// hooks/useFetch.js
+import { useState, useEffect } from 'react';
+ 
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+ 
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+ 
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [url]);
+ 
+  return { data, loading, error };
+}
+ 
+export default useFetch;
+```
+ 
+사용:
+```javascript
+// 어디서든 한 줄로
+const { data: user, loading, error } = useFetch('/api/user');
+const { data: posts, loading: postsLoading } = useFetch('/api/posts');
+```
+ 
+---
+ 
+useFetch에서 POST 요청도 하고싶어
+ 
+POST는 useEffect 안에서 하는 게 아니라 이벤트 핸들러에서 직접 호출하는 방식이 맞아요.
+ 
+🛠️ useApi 훅 (GET + POST 통합):
+ 
+```javascript
+// hooks/useApi.js
+import { useState, useCallback } from 'react';
+ 
+function useApi() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+ 
+  const request = useCallback(async (url, options = {}) => {
+    setLoading(true);
+    setError(null);
+ 
+    try {
+      const res = await fetch(url, {
+        headers: { 'Content-Type': 'application/json', ...options.headers },
+        ...options,
+        body: options.body ? JSON.stringify(options.body) : undefined,
+      });
+ 
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+ 
+  return { request, loading, error };
+}
+ 
+export default useApi;
+```
+ 
+사용:
+```javascript
+const { request, loading } = useApi();
+ 
+const handleSubmit = async (formData) => {
+  try {
+    const result = await request('/api/users', {
+      method: 'POST',
+      body: formData
+    });
+    console.log('생성됨:', result);
+  } catch (err) {
+    console.error('실패:', err);
+  }
+};
+```
+ 
+---
+ 
+근데 토큰 인증이 있어서 모든 요청에 Authorization 헤더 붙여야해
+ 
+그러면 토큰을 자동으로 붙여주는 로직이 필요해요.
+ 
+🛠️ 토큰 자동 주입:
+ 
+```javascript
+const request = useCallback(async (url, options = {}) => {
+  setLoading(true);
+  setError(null);
+ 
+  const token = localStorage.getItem('access_token');
+ 
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...options.headers,
+      },
+      ...options,
+      body: options.body ? JSON.stringify(options.body) : undefined,
+    });
+ 
+    if (res.status === 401) {
+      localStorage.removeItem('access_token');
+      window.location.href = '/login';
+      return;
+    }
+ 
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    setError(err.message);
+    throw err;
+  } finally {
+    setLoading(false);
+  }
+}, []);
+```
+ 
+---
+ 
+401 나왔을 때 로그인 페이지로 보내는 대신 토큰 자동 갱신하게 할 수 없어? refresh token 있거든
+ 
+그러면 401 받았을 때 refresh token으로 새 access token 발급받고 원래 요청을 재시도하는 로직 필요해요.
+ 
+🛠️ 토큰 자동 갱신 (Retry with Refresh):
+ 
+```javascript
+const refreshAccessToken = async () => {
+  const refreshToken = localStorage.getItem('refresh_token');
+  if (!refreshToken) return false;
+ 
+  try {
+    const res = await fetch('/api/token/refresh', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: refreshToken }),
+    });
+ 
+    if (!res.ok) return false;
+ 
+    const { access_token } = await res.json();
+    localStorage.setItem('access_token', access_token);
+    return true;
+  } catch {
+    return false;
+  }
+};
+ 
+const request = useCallback(async (url, options = {}, isRetry = false) => {
+  setLoading(true);
+  setError(null);
+ 
+  const token = localStorage.getItem('access_token');
+ 
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...options.headers,
+      },
+      ...options,
+      body: options.body ? JSON.stringify(options.body) : undefined,
+    });
+ 
+    if (res.status === 401 && !isRetry) {
+      const refreshed = await refreshAccessToken();
+      if (refreshed) {
+        return request(url, options, true);
+      } else {
+        window.location.href = '/login';
+        return;
+      }
+    }
+ 
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    setError(err.message);
+    throw err;
+  } finally {
+    setLoading(false);
+  }
+}, []);
+```

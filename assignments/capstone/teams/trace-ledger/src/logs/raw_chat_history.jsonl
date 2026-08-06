@@ -1,0 +1,7 @@
+{"role": "user", "content": "Redis 연결이 자꾸 타임아웃 나는데 이유를 모르겠어. 로컬에선 잘 되는데 서버에 올리면 5분 정도 뒤에 끊겨."}
+{"role": "assistant", "content": "네트워크 설정 문제일 수 있습니다. `redis-cli ping`으로 응답이 오는지 확인해 보세요."}
+{"role": "user", "content": "응답은 오는데, 애플리케이션에서만 끊겨. 에러 로그 보니까 `Connection pool exhausted`라고 뜨네."}
+{"role": "assistant", "content": "아, 풀 설정 문제군요. `max_connections`를 늘려보세요."}
+{"role": "user", "content": "늘려봤는데 똑같아. 알고보니 서버 방화벽에서 유휴 연결(Idle Connection)을 300초마다 끊고 있었어. TCP Keepalive를 켜야 할 것 같아."}
+{"role": "assistant", "content": "좋은 발견입니다! 파이썬 `redis-py`를 쓰신다면 `health_check_interval=30` 설정을 추가해 보세요."}
+{"role": "user", "content": "오! 적용하니까 이제 안 끊긴다. 이거 나중에 다른 팀원들도 알 수 있게 문서화 해둬야겠다."}

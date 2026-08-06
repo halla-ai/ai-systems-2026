@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>TraceLedger - Interactive Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+        body { font-family: 'Pretendard', sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #334155; margin-bottom: 20px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+        .status-badge { background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; border: 1px solid var(--success); }
+
+        .layout { display: grid; grid-template-columns: 450px 1fr; gap: 20px; height: calc(100vh - 120px); }
+        .panel { background: var(--card-bg); border-radius: 12px; border: 1px solid #334155; display: flex; flex-direction: column; overflow: hidden; }
+        .panel-header { padding: 15px 20px; background: rgba(0,0,0,0.2); border-bottom: 1px solid #334155; font-weight: 600; font-size: 0.95rem; color: var(--accent); }
+        .panel-content { padding: 20px; flex: 1; overflow-y: auto; display: flex; flex-direction: column;}
+
+        /* Input Controls */
+        textarea { width: 100%; height: 250px; background: #0f172a; border: 1px solid #475569; color: #e2e8f0; padding: 15px; border-radius: 8px; font-family: monospace; resize: none; margin-bottom: 15px; box-sizing: border-box;}
+        textarea:focus { outline: none; border-color: var(--accent); }
+        input[type="text"] { width: 100%; background: #0f172a; border: 1px solid #475569; color: #e2e8f0; padding: 12px; border-radius: 8px; margin-bottom: 15px; box-sizing: border-box; }
+        button { background: var(--accent); color: #020617; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #7dd3fc; }
+        button:disabled { background: #475569; color: #94a3b8; cursor: not-allowed; }
+
+        /* Trace Logs */
+        .trace-box { margin-top: 20px; flex: 1; overflow-y: auto; background: #0f172a; border-radius: 8px; padding: 15px; border: 1px solid #334155;}
+        .trace-item { margin-bottom: 10px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #475569; }
+        .trace-agent { font-weight: bold; color: var(--accent); margin-right: 5px; }
+
+        /* Document Preview */
+        .markdown-preview { background: #0f172a; padding: 25px; border-radius: 8px; font-family: 'Pretendard', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #cbd5e1; border: 1px solid #334155; min-height: 100%; white-space: pre-wrap; }
+        
+        .agent-workflow { display: flex; gap: 10px; margin-bottom: 20px; }
+        .agent-step { flex: 1; text-align: center; padding: 10px; background: #0f172a; border-radius: 6px; font-size: 0.85rem; color: var(--text-dim); border: 1px solid #334155; transition: 0.3s;}
+        .agent-step.active { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">TraceLedger Interactive Portal</div>
+            <div id="status-badge" class="status-badge">System Idle</div>
+        </header>
+
+        <div class="layout">
+            <!-- Left: User Input & Control -->
+            <div class="panel">
+                <div class="panel-header">1. INTAKE & ORCHESTRATION</div>
+                <div class="panel-content">
+                    <label style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 5px; display:block;">AI와의 대화 로그 (Trial & Error):</label>
+                    <textarea id="raw-history" placeholder='AI와 나눈 대화 로그를 여기에 복사해서 붙여넣으세요.'></textarea>
+                    
+                    <label style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 5px; display:block;">문서화 목표 (Objective):</label>
+                    <input type="text" id="objective" placeholder="예: 무한 루프 장애 트러블슈팅 런북 작성">
+                    
+                    <button id="start-btn" onclick="startAnalysis()">✨ 자산화 시작 (Start TraceLedger)</button>
+
+                    <div class="trace-box" id="trace-log">
+                        <!-- Agent trace events will appear here -->
+                        <div style="color: var(--text-dim); text-align: center; margin-top: 50px;">대기 중...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Live Preview -->
+            <div class="panel">
+                <div class="panel-header">2. LIVE ARTIFACT PREVIEW</div>
+                <div class="panel-content" style="background: #020617;">
+                    <div class="agent-workflow">
+                        <div id="step-Planner" class="agent-step">1. Planner 분석</div>
+                        <div id="step-Worker" class="agent-step">2. Worker 작성</div>
+                        <div id="step-Reviewer" class="agent-step">3. Reviewer 검증</div>
+                    </div>
+                    <div id="artifact-content" class="markdown-preview">
+에이전트가 문서를 작성하면 이곳에 표시됩니다...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pollInterval;
+
+        async function startAnalysis() {
+            // textarea의 값을 가져오기 (trim 적용)
+            const historyInput = document.getElementById('raw-history');
+            const history = historyInput.value.trim();
+            const objective = document.getElementById('objective').value.trim();
+            const btn = document.getElementById('start-btn');
+            const badge = document.getElementById('status-badge');
+
+            if (!history || history.length === 0) {
+                return alert("대화 로그를 입력해주세요!");
+            }
+
+            btn.disabled = true;
+            btn.innerText = "분석 중...";
+            badge.innerText = "Running Agents...";
+            badge.style.borderColor = "var(--accent)";
+            badge.style.color = "var(--accent)";
+            document.getElementById('trace-log').innerHTML = '';
+            document.getElementById('artifact-content').innerText = "에이전트가 문서를 작성 중입니다...";
+
+            try {
+                // 1. 서버에 분석 요청 (POST)
+                const payload = { 
+                    history: history, 
+                    objective: objective 
+                };
+                
+                console.log("Sending payload:", payload); // 디버깅용
+
+                const res = await fetch('/api/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                // 2. 이벤트 로그 폴링 시작
+                if (pollInterval) clearInterval(pollInterval);
+                pollInterval = setInterval(fetchLogs, 1500);
+
+            } catch (e) {
+                alert("서버 연결에 실패했습니다.");
+                resetUI();
+            }
+        }
+
+        async function fetchLogs() {
+            try {
+                const res = await fetch('/.events.jsonl');
+                const text = await res.text();
+                if (!text) return;
+
+                const events = text.trim().split('\n').map(l => {
+                    try { return JSON.parse(l); } catch(e) { return null; }
+                }).filter(Boolean);
+
+                const logBox = document.getElementById('trace-log');
+                logBox.innerHTML = '';
+                
+                // 스텝 UI 초기화
+                document.querySelectorAll('.agent-step').forEach(s => s.classList.remove('active'));
+
+                events.forEach(e => {
+                    // 로그 추가
+                    const div = document.createElement('div');
+                    div.className = 'trace-item';
+                    
+                    let payloadSummary = "";
+                    if(e.event === 'verdict') payloadSummary = `(${e.payload.verdict})`;
+                    if(e.event === 'error') payloadSummary = `(Error: ${e.payload.msg})`;
+                    
+                    div.innerHTML = `<span class="trace-agent">[${e.agent}]</span> ${e.event} ${payloadSummary}`;
+                    logBox.prepend(div);
+
+                    // 워크플로우 활성화
+                    if (document.getElementById(`step-${e.agent}`)) {
+                        document.getElementById(`step-${e.agent}`).classList.add('active');
+                    }
+
+                    // 완료 감지
+                    if (e.event === 'task_completed' || e.event === 'task_failed' || e.event === 'error') {
+                        clearInterval(pollInterval);
+                        resetUI(e.event === 'task_completed');
+                    }
+                });
+
+                // 최종 문서 프리뷰 업데이트
+                const lastDoc = [...events].reverse().find(e => e.event === 'doc_generated');
+                if (lastDoc) {
+                    document.getElementById('artifact-content').innerText = lastDoc.payload.full_content;
+                }
+
+            } catch (e) {
+                console.error("Polling error", e);
+            }
+        }
+
+        function resetUI(success = false) {
+            const btn = document.getElementById('start-btn');
+            const badge = document.getElementById('status-badge');
+            
+            btn.disabled = false;
+            btn.innerText = "✨ 자산화 시작 (Start TraceLedger)";
+            
+            if(success) {
+                badge.innerText = "Task Completed";
+                badge.style.color = "var(--success)";
+                badge.style.borderColor = "var(--success)";
+            } else {
+                badge.innerText = "System Idle / Error";
+                badge.style.color = "var(--danger)";
+                badge.style.borderColor = "var(--danger)";
+            }
+        }
+    </script>
+</body>
+</html>
