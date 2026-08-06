@@ -1,0 +1,560 @@
+[
+  {
+    "span_name": "ralph.reason",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "1a3d1fa7bc8960a9",
+    "start_ns": 1779717018475268800,
+    "end_ns": 1779717018516347100,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "none",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.act",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "6c031199972a8469",
+    "start_ns": 1779717018516347100,
+    "end_ns": 1779717018556698600,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "validator",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.look",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "07a0ca6e0822e8f3",
+    "start_ns": 1779717018556698600,
+    "end_ns": 1779717018587494200,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "validator",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.plan",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "815ef6d13b8faa18",
+    "start_ns": 1779717018587494200,
+    "end_ns": 1779717018618074800,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "validator",
+      "gate.result": "fail",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.handle",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "06cb0fb39a1de644",
+    "start_ns": 1779717018618074800,
+    "end_ns": 1779717018648699400,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "validator",
+      "gate.result": "fail",
+      "artifact.path": "artifacts/task-001/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.task",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "23b8c1e9392456de",
+    "start_ns": 1779717018475268800,
+    "end_ns": 1779717018648699400,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-001",
+      "agent.role": "planner",
+      "model.name": "gpt-4o",
+      "tool.name": "validator",
+      "gate.result": "fail",
+      "artifact.path": "artifacts/task-001/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.reason",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "a65ed389b74d0fb1",
+    "start_ns": 1779717018648699400,
+    "end_ns": 1779717018689443600,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "none",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.act",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "72ff5d2a386ecbe0",
+    "start_ns": 1779717018689443600,
+    "end_ns": 1779717018729863600,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "validator",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.look",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "4737819096da1dac",
+    "start_ns": 1779717018729863600,
+    "end_ns": 1779717018760332700,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "validator",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.plan",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "c241330b01a9e71f",
+    "start_ns": 1779717018760332700,
+    "end_ns": 1779717018790812400,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "validator",
+      "gate.result": "pass",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.handle",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "28df6ec4ce4a2bbd",
+    "start_ns": 1779717018790812400,
+    "end_ns": 1779717018821156300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "validator",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-002/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.task",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "32e706298fadc1a6",
+    "start_ns": 1779717018648699400,
+    "end_ns": 1779717018821156300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-002",
+      "agent.role": "executor",
+      "model.name": "claude-3-5-sonnet",
+      "tool.name": "validator",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-002/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.reason",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "47229389571aa876",
+    "start_ns": 1779717018821156300,
+    "end_ns": 1779717018861727400,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "none",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.act",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "17be31111a2a73ed",
+    "start_ns": 1779717018861727400,
+    "end_ns": 1779717018902371600,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "code_executor",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.look",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "18c267976142ea7d",
+    "start_ns": 1779717018902371600,
+    "end_ns": 1779717018932878500,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "code_executor",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.plan",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "9a8dca03580d7b71",
+    "start_ns": 1779717018932878500,
+    "end_ns": 1779717018963348300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "code_executor",
+      "gate.result": "pass",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.handle",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "ce9ff57f43b7a3a6",
+    "start_ns": 1779717018963348300,
+    "end_ns": 1779717018993795500,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "code_executor",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-003/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.task",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "6c307511b2b9437a",
+    "start_ns": 1779717018821156300,
+    "end_ns": 1779717018993795500,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-003",
+      "agent.role": "reviewer",
+      "model.name": "gemini-1.5-pro",
+      "tool.name": "code_executor",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-003/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.reason",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "89463e85759cde66",
+    "start_ns": 1779717018993795500,
+    "end_ns": 1779717019034336900,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "none",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.act",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "4b0dbb418d5288f1",
+    "start_ns": 1779717019034336900,
+    "end_ns": 1779717019074706300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "summarizer",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.look",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "a0ee89aed453dd32",
+    "start_ns": 1779717019074706300,
+    "end_ns": 1779717019105136800,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "summarizer",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.plan",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "5c941cf0dc98d2c1",
+    "start_ns": 1779717019105136800,
+    "end_ns": 1779717019135793500,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "summarizer",
+      "gate.result": "pass",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.handle",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "3139d32c93cd59bf",
+    "start_ns": 1779717019135793500,
+    "end_ns": 1779717019166400100,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "summarizer",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-004/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.task",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "bacfb3d00b1f9163",
+    "start_ns": 1779717018993795500,
+    "end_ns": 1779717019166400100,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-004",
+      "agent.role": "synthesizer",
+      "model.name": "llama-3.1-70b",
+      "tool.name": "summarizer",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-004/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.reason",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "a9488d990bbb2599",
+    "start_ns": 1779717019166400100,
+    "end_ns": 1779717019207163600,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "none",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.act",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "3b982ef8daf61a26",
+    "start_ns": 1779717019207163600,
+    "end_ns": 1779717019248113400,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "file_writer",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.look",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "19db3ad0ddd1dfb2",
+    "start_ns": 1779717019248113400,
+    "end_ns": 1779717019278561800,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "file_writer",
+      "gate.result": "pending",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.plan",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "a2bc372f7412b293",
+    "start_ns": 1779717019278561800,
+    "end_ns": 1779717019308976100,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "file_writer",
+      "gate.result": "pass",
+      "artifact.path": "none"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.handle",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "5d65a441d58842de",
+    "start_ns": 1779717019308976100,
+    "end_ns": 1779717019339704300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "file_writer",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-005/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.task",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "11ce5dd2b45ed1f0",
+    "start_ns": 1779717019166400100,
+    "end_ns": 1779717019339704300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "task-005",
+      "agent.role": "executor",
+      "model.name": "gpt-4o",
+      "tool.name": "file_writer",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/task-005/output.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  },
+  {
+    "span_name": "ralph.run",
+    "trace_id": "bdd640fb06671ad11c80317fa3b1799d",
+    "span_id": "3eb13b9046685257",
+    "start_ns": 1779717018475268800,
+    "end_ns": 1779717019339704300,
+    "attributes": {
+      "run.id": "run-f34ef276",
+      "task.id": "none",
+      "agent.role": "orchestrator",
+      "model.name": "none",
+      "tool.name": "none",
+      "gate.result": "pass",
+      "artifact.path": "artifacts/run-f34ef276/run_summary.json"
+    },
+    "has_all_7_attrs": true,
+    "missing_attrs": []
+  }
+]
