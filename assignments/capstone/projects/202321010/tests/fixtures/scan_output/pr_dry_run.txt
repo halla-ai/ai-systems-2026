@@ -1,0 +1,72 @@
+============================================================
+DRY-RUN PR PREVIEW (no gh command executed)
+============================================================
+
+Base branch : main
+Head branch : docs/drift-fix
+Report      : C:\Users\K\Desktop\기말\tests\fixtures\scan_output\drift_report.json
+Patch       : C:\Users\K\Desktop\기말\tests\fixtures\scan_output\patch.diff
+
+------------------------------------------------------------
+TITLE
+------------------------------------------------------------
+docs: fix 4 documentation drift(s) in sample_project
+
+------------------------------------------------------------
+BODY
+------------------------------------------------------------
+## Summary
+
+- Functions scanned: **3**
+- Drifts detected: **4**
+- Patch file: `patch.diff`
+
+> This PR updates **documentation only**. Code changes are suggested as comments, not auto-applied.
+
+## Drift breakdown
+
+- `parameter_default_mismatch`: 1
+- `return_structure_mismatch`: 3
+
+## Detected drifts
+
+### `api.parse_json` — `return_structure_mismatch`
+- **Doc:** `dict: Parsed data`
+- **Code:** `list`
+- **Evidence:** doc="returns dict: Parsed data", code="returns list"
+
+### `api.greet` — `parameter_default_mismatch`
+- **Doc:** `None`
+- **Code:** `True`
+- **Evidence:** doc="loud=None", code="loud=True"
+
+### `api.greet` — `return_structure_mismatch`
+- **Doc:** `str: Greeting`
+- **Code:** `str`
+- **Evidence:** doc="returns str: Greeting", code="returns str"
+
+### `api.fetch_items` — `return_structure_mismatch`
+- **Doc:** `list[dict]: Item list`
+- **Code:** `dict`
+- **Evidence:** doc="returns list[dict]: Item list", code="returns dict"
+
+## Governance decisions
+
+- `api.parse_json` → **update_doc** (Tests exist; code is the source of truth.)
+- `api.greet` → **update_doc** (Tests exist; code is the source of truth.)
+- `api.fetch_items` → **update_doc** (Typing annotations present; code takes priority.)
+
+## Out of scope
+
+- Semantic mismatch (e.g. "returns sorted list" but code does not sort)
+- Automatic code modification
+
+## Next steps (TODO)
+
+- Run `gh pr create` with this title/body after human review
+- Apply `patch.diff` to README/docstring only
+- Require human approval before merge (HOTL)
+
+============================================================
+TODO: GitHub PR creation via gh CLI / GitHub API (not implemented)
+============================================================

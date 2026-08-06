@@ -1,0 +1,763 @@
+{
+  "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\benchmark_project",
+  "functions_scanned": 40,
+  "drift_count": 30,
+  "drifts": [
+    {
+      "function": "type_01",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_02",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "str",
+      "code_value": "int",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns str",
+        "code": "returns int"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_03",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "int",
+      "code_value": "float",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns int",
+        "code": "returns float"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_04",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_05",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "bool",
+      "code_value": "str",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns bool",
+        "code": "returns str"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_06",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "float",
+      "code_value": "int",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns float",
+        "code": "returns int"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_07",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "str",
+      "code_value": "dict",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns str",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_08",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "int",
+      "code_value": "str",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns int",
+        "code": "returns str"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_09",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "None",
+      "code_value": "float",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns None",
+        "code": "returns float"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "type_10",
+      "module": "api",
+      "drift_type": "return_type_mismatch",
+      "doc_value": "int",
+      "code_value": "bool",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "returns int",
+        "code": "returns bool"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_01",
+      "module": "api",
+      "drift_type": "parameter_count_mismatch",
+      "doc_value": "2",
+      "code_value": "1",
+      "confidence": 0.95,
+      "evidence": {
+        "doc": "a, b",
+        "code": "a"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_02",
+      "module": "api",
+      "drift_type": "parameter_count_mismatch",
+      "doc_value": "1",
+      "code_value": "2",
+      "confidence": 0.95,
+      "evidence": {
+        "doc": "x",
+        "code": "x, y"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_03",
+      "module": "api",
+      "drift_type": "parameter_name_mismatch",
+      "doc_value": "user_id",
+      "code_value": "uid",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "parameter 'user_id'",
+        "code": "parameter 'uid'"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_04",
+      "module": "api",
+      "drift_type": "parameter_name_mismatch",
+      "doc_value": "message",
+      "code_value": "msg",
+      "confidence": 0.9,
+      "evidence": {
+        "doc": "parameter 'message'",
+        "code": "parameter 'msg'"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_05",
+      "module": "api",
+      "drift_type": "parameter_type_mismatch",
+      "doc_value": "int",
+      "code_value": "str",
+      "confidence": 0.88,
+      "evidence": {
+        "doc": "count: int",
+        "code": "count: str"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_06",
+      "module": "api",
+      "drift_type": "parameter_type_mismatch",
+      "doc_value": "float",
+      "code_value": "int",
+      "confidence": 0.88,
+      "evidence": {
+        "doc": "rate: float",
+        "code": "rate: int"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_07",
+      "module": "api",
+      "drift_type": "parameter_type_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.88,
+      "evidence": {
+        "doc": "payload: dict",
+        "code": "payload: list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_08",
+      "module": "api",
+      "drift_type": "parameter_default_mismatch",
+      "doc_value": "False",
+      "code_value": "True",
+      "confidence": 0.85,
+      "evidence": {
+        "doc": "verbose=False",
+        "code": "verbose=True"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_09",
+      "module": "api",
+      "drift_type": "parameter_default_mismatch",
+      "doc_value": "10",
+      "code_value": "100",
+      "confidence": 0.85,
+      "evidence": {
+        "doc": "limit=10",
+        "code": "limit=100"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "param_10",
+      "module": "api",
+      "drift_type": "parameter_default_mismatch",
+      "doc_value": "'r'",
+      "code_value": "'w'",
+      "confidence": 0.85,
+      "evidence": {
+        "doc": "mode='r'",
+        "code": "mode='w'"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_01",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_02",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_03",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_04",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_05",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_06",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_07",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "dict",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns dict"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_08",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_09",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "list[dict]",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns list[dict]",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    },
+    {
+      "function": "struct_10",
+      "module": "api",
+      "drift_type": "return_structure_mismatch",
+      "doc_value": "dict",
+      "code_value": "list",
+      "confidence": 0.91,
+      "evidence": {
+        "doc": "returns dict",
+        "code": "returns list"
+      },
+      "source_file": "api.py"
+    }
+  ],
+  "decisions": [
+    {
+      "function": "type_01",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_02",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_03",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_04",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_05",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_06",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_07",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_08",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_09",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "type_10",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_01",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_02",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_03",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_04",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_05",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_06",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_07",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_08",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_09",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "param_10",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_01",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_02",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_03",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_04",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_05",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_06",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_07",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_08",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_09",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    },
+    {
+      "function": "struct_10",
+      "module": "api",
+      "direction": "update_doc",
+      "reason": "Typing annotations present; code takes priority.",
+      "has_tests": false,
+      "has_typing": true,
+      "has_docstring_contract": false
+    }
+  ],
+  "code_suggestions": [],
+  "run_id": "ed8cc457-9084-4133-aa1a-b3190758f85d",
+  "qa_passed": false,
+  "qa_iterations": 0,
+  "collaboration_trace": [
+    {
+      "task_id": "9b0536a9-9871-4f4b-9a72-be0bc127e769",
+      "agent_name": "lead",
+      "role": "lead",
+      "state_from": "planned",
+      "state_to": "in_progress",
+      "note": "Run initiated"
+    },
+    {
+      "task_id": "f158cd06-b034-4e10-aa59-5ec6b6f9f57a",
+      "agent_name": "doc_analyzer",
+      "role": "worker",
+      "state_from": "in_progress",
+      "state_to": "worker_done",
+      "note": "Doc specs extracted"
+    },
+    {
+      "task_id": "149941d0-7f1a-41c7-9b8e-d5d3c6677091",
+      "agent_name": "drift_detector",
+      "role": "worker",
+      "state_from": "worker_done",
+      "state_to": "under_review",
+      "note": "Ready for review"
+    },
+    {
+      "task_id": "5e55bfc0-854d-4312-b2b1-ce21f36a5d0e",
+      "agent_name": "reviewer",
+      "role": "reviewer",
+      "state_from": "under_review",
+      "state_to": "escalated",
+      "note": "Potential secrets detected: ['token: str)', 'token: str)']"
+    }
+  ],
+  "provider_profile": "static-ast-v1",
+  "hook_results": [
+    {
+      "hook_name": "secret_scan",
+      "passed": false,
+      "action": "stop",
+      "message": "Potential secrets detected: ['token: str)', 'token: str)']"
+    },
+    {
+      "hook_name": "doc_only_patch",
+      "passed": true,
+      "action": "continue",
+      "message": "Patch appears documentation-only."
+    },
+    {
+      "hook_name": "approval",
+      "passed": true,
+      "action": "continue",
+      "message": "Approval check passed (or no human_review decisions)."
+    },
+    {
+      "hook_name": "escalation",
+      "passed": true,
+      "action": "continue",
+      "message": "No escalation needed."
+    }
+  ],
+  "review_verdict": {
+    "task_id": "5e55bfc0-854d-4312-b2b1-ce21f36a5d0e",
+    "run_id": "ed8cc457-9084-4133-aa1a-b3190758f85d",
+    "reviewer_role": "reviewer",
+    "verdict": "escalate",
+    "rubric_scores": {
+      "doc_patch_safety": 0.0,
+      "governance_applied": 1.0
+    },
+    "comments": "Automated reviewer verdict based on governance + hooks.",
+    "requires_hotl": false,
+    "abort_reason": "Potential secrets detected: ['token: str)', 'token: str)']"
+  },
+  "llm_meta": {
+    "enabled": false,
+    "provider": "static-ast-v1",
+    "drift_review": {
+      "llm_used": false,
+      "removed": 0
+    }
+  },
+  "pr_url": null,
+  "doc_spec_path": null,
+  "code_spec_path": null,
+  "approval_gate_path": "benchmark_out_test\\approval_gate.json",
+  "fix_invocations": 0,
+  "hotl_cycles": 0,
+  "hotl_waited": false,
+  "hotl_timed_out": false
+}

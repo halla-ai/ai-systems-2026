@@ -1,0 +1,207 @@
+{
+  "project": "benchmark_project",
+  "version": 1,
+  "tier": "synthetic_curated",
+  "caveat": "Synthetic set generated to match detector rules; expect optimistic scores. See realistic_fixtures.sample_project in benchmark_report.json for honest metrics.",
+  "description": "Proposal §4 benchmark: 30 intentional drifts (10 type, 10 param, 10 structure) + 10 clean functions",
+  "targets": {
+    "min_precision": 0.7,
+    "max_false_positive_rate": 0.15,
+    "min_recall": 0.7,
+    "min_pr_success_rate": 0.85
+  },
+  "clean_functions": [
+    "clean_01",
+    "clean_02",
+    "clean_03",
+    "clean_04",
+    "clean_05",
+    "clean_06",
+    "clean_07",
+    "clean_08",
+    "clean_09",
+    "clean_10"
+  ],
+  "expected_drifts": [
+    {
+      "module": "api",
+      "function": "type_01",
+      "drift_type": "return_structure_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_02",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_03",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_04",
+      "drift_type": "return_structure_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_05",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_06",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_07",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_08",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_09",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "type_10",
+      "drift_type": "return_type_mismatch",
+      "category": "type_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_01",
+      "drift_type": "parameter_count_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_02",
+      "drift_type": "parameter_count_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_03",
+      "drift_type": "parameter_name_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_04",
+      "drift_type": "parameter_name_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_05",
+      "drift_type": "parameter_type_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_06",
+      "drift_type": "parameter_type_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_07",
+      "drift_type": "parameter_type_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_08",
+      "drift_type": "parameter_default_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_09",
+      "drift_type": "parameter_default_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "param_10",
+      "drift_type": "parameter_default_mismatch",
+      "category": "parameter_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_01",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_02",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_03",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_04",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_05",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_06",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_07",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_08",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_09",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    },
+    {
+      "module": "api",
+      "function": "struct_10",
+      "drift_type": "return_structure_mismatch",
+      "category": "return_structure_mismatch"
+    }
+  ]
+}

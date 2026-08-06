@@ -1,0 +1,702 @@
+{
+  "kind": "doc_spec",
+  "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\benchmark_project",
+  "count": 40,
+  "functions": [
+    {
+      "name": "clean_01",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_02",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "text",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_03",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "items",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_04",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        },
+        {
+          "name": "b",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_05",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "flag",
+          "annotation": "bool",
+          "default": "False"
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_06",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "data",
+          "annotation": "dict",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_07",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_08",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "s",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_09",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "values",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "clean_10",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "key",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_01",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "data",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_02",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_03",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_04",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "items",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_05",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "s",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_06",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "v",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_07",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "m",
+          "annotation": "dict",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_08",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        },
+        {
+          "name": "b",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_09",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "f",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "None",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "type_10",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "b",
+          "annotation": "bool",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_01",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        },
+        {
+          "name": "b",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_02",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_03",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "user_id",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_04",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "message",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_05",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "count",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_06",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "rate",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_07",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "payload",
+          "annotation": "dict",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_08",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "verbose",
+          "annotation": "bool",
+          "default": "False"
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_09",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "limit",
+          "annotation": "int",
+          "default": "10"
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "param_10",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "mode",
+          "annotation": "str",
+          "default": "'r'"
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_01",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "q",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_02",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "id",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_03",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_04",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "k",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_05",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "page",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_06",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "token",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_07",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "rows",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_08",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "name",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_09",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "size",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list[dict]",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    },
+    {
+      "name": "struct_10",
+      "module": "readme",
+      "parameters": [
+        {
+          "name": "code",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [],
+      "has_docstring": false,
+      "source_file": "README.md",
+      "line_number": 0,
+      "source": "doc"
+    }
+  ]
+}

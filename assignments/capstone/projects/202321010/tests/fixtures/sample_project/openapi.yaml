@@ -1,0 +1,56 @@
+openapi: "3.0.0"
+info:
+  title: Sample API
+  version: "1.0"
+paths:
+  /parse:
+    post:
+      operationId: parse_json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+  /greet:
+    get:
+      operationId: greet
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: loud
+          in: query
+          schema:
+            type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+  /items:
+    get:
+      operationId: fetch_items
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object

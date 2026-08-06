@@ -1,0 +1,37 @@
+{
+  "task_id": "fef32188-326e-4001-b80c-d82eea457538",
+  "run_id": "88dd58f5-44dc-4b96-aa6e-d7b54ac7c29c",
+  "agent_name": "qa_agent",
+  "status": "success",
+  "output": {
+    "passed": true,
+    "stopped_reason": "QA loop complete at iteration 1: tests passed.",
+    "iterations": [
+      {
+        "iteration": 1,
+        "pytest_passed": true,
+        "pytest_summary": "pytest exit_code=0",
+        "review_approved": true,
+        "fix_generator_recalled": false,
+        "hook": {
+          "hook_name": "loop_stop",
+          "passed": true,
+          "action": "stop",
+          "message": "QA loop complete at iteration 1: tests passed."
+        }
+      }
+    ],
+    "final_patch_bytes": 725,
+    "hotl_cycles": 1,
+    "hotl_waited": false,
+    "hotl_timed_out": false
+  },
+  "artifacts": [],
+  "tool_calls": [
+    {
+      "tool": "pytest.run",
+      "status": "success",
+      "summary": "pytest exit_code=0"
+    }
+  ]
+}

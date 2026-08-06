@@ -1,0 +1,10 @@
+{
+  "run_id": "06e4adbd-7299-4a49-8b06-778c7178992f",
+  "status": "approved",
+  "requires_human": false,
+  "hotl_approved": false,
+  "pr_url": null,
+  "merge_blocked": false,
+  "message": "Approval gate passed.",
+  "timestamp": "2026-06-11T07:19:35.212726+00:00"
+}

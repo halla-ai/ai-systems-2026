@@ -1,0 +1,10 @@
+{
+  "run_id": "ed8cc457-9084-4133-aa1a-b3190758f85d",
+  "status": "rejected",
+  "requires_human": false,
+  "hotl_approved": false,
+  "pr_url": null,
+  "merge_blocked": true,
+  "message": "Human rejected this run. No merge or PR continuation.",
+  "timestamp": "2026-06-11T14:56:18.328211+00:00"
+}

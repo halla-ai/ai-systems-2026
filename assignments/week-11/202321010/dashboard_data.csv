@@ -1,0 +1,6 @@
+task_id,agent_role,duration_s,cost_usd,cumulative_cost_usd
+task-001,planner,0.1730,0.00072800,0.00072800
+task-002,executor,0.1720,0.00082400,0.00155200
+task-003,reviewer,0.1730,0.00082200,0.00237400
+task-004,synthesizer,0.1730,0.00094200,0.00331600
+task-005,executor,0.1730,0.00045600,0.00377200

@@ -1,0 +1,776 @@
+{
+  "kind": "code_spec",
+  "project_root": "C:\\Users\\K\\Desktop\\기말\\tests\\fixtures\\benchmark_project",
+  "count": 40,
+  "functions": [
+    {
+      "name": "clean_01",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 4,
+      "source": "code"
+    },
+    {
+      "name": "clean_02",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "text",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 9,
+      "source": "code"
+    },
+    {
+      "name": "clean_03",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "items",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 14,
+      "source": "code"
+    },
+    {
+      "name": "clean_04",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        },
+        {
+          "name": "b",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 19,
+      "source": "code"
+    },
+    {
+      "name": "clean_05",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "flag",
+          "annotation": "bool",
+          "default": "False"
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [
+        "bool"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 24,
+      "source": "code"
+    },
+    {
+      "name": "clean_06",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "data",
+          "annotation": "dict",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "None"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 29,
+      "source": "code"
+    },
+    {
+      "name": "clean_07",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 34,
+      "source": "code"
+    },
+    {
+      "name": "clean_08",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "s",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 39,
+      "source": "code"
+    },
+    {
+      "name": "clean_09",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "values",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 44,
+      "source": "code"
+    },
+    {
+      "name": "clean_10",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "key",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 49,
+      "source": "code"
+    },
+    {
+      "name": "type_01",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "data",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 54,
+      "source": "code"
+    },
+    {
+      "name": "type_02",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 59,
+      "source": "code"
+    },
+    {
+      "name": "type_03",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [
+        "None"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 64,
+      "source": "code"
+    },
+    {
+      "name": "type_04",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "items",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 69,
+      "source": "code"
+    },
+    {
+      "name": "type_05",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "s",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 74,
+      "source": "code"
+    },
+    {
+      "name": "type_06",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "v",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 79,
+      "source": "code"
+    },
+    {
+      "name": "type_07",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "m",
+          "annotation": "dict",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "None"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 84,
+      "source": "code"
+    },
+    {
+      "name": "type_08",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        },
+        {
+          "name": "b",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 89,
+      "source": "code"
+    },
+    {
+      "name": "type_09",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "f",
+          "annotation": "float",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [
+        "None"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 94,
+      "source": "code"
+    },
+    {
+      "name": "type_10",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "b",
+          "annotation": "bool",
+          "default": null
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [
+        "bool"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 99,
+      "source": "code"
+    },
+    {
+      "name": "param_01",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "a",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 104,
+      "source": "code"
+    },
+    {
+      "name": "param_02",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "x",
+          "annotation": "str",
+          "default": null
+        },
+        {
+          "name": "y",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 109,
+      "source": "code"
+    },
+    {
+      "name": "param_03",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "uid",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 114,
+      "source": "code"
+    },
+    {
+      "name": "param_04",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "msg",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 119,
+      "source": "code"
+    },
+    {
+      "name": "param_05",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "count",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 124,
+      "source": "code"
+    },
+    {
+      "name": "param_06",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "rate",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "float",
+      "inferred_returns": [
+        "float"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 129,
+      "source": "code"
+    },
+    {
+      "name": "param_07",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "payload",
+          "annotation": "list",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 134,
+      "source": "code"
+    },
+    {
+      "name": "param_08",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "verbose",
+          "annotation": "bool",
+          "default": "True"
+        }
+      ],
+      "return_annotation": "bool",
+      "inferred_returns": [
+        "bool"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 139,
+      "source": "code"
+    },
+    {
+      "name": "param_09",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "limit",
+          "annotation": "int",
+          "default": "100"
+        }
+      ],
+      "return_annotation": "int",
+      "inferred_returns": [
+        "int"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 144,
+      "source": "code"
+    },
+    {
+      "name": "param_10",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "mode",
+          "annotation": "str",
+          "default": "'w'"
+        }
+      ],
+      "return_annotation": "str",
+      "inferred_returns": [
+        "str"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 149,
+      "source": "code"
+    },
+    {
+      "name": "struct_01",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "q",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 154,
+      "source": "code"
+    },
+    {
+      "name": "struct_02",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "id",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 159,
+      "source": "code"
+    },
+    {
+      "name": "struct_03",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "n",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 164,
+      "source": "code"
+    },
+    {
+      "name": "struct_04",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "k",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 169,
+      "source": "code"
+    },
+    {
+      "name": "struct_05",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "page",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 174,
+      "source": "code"
+    },
+    {
+      "name": "struct_06",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "token",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 179,
+      "source": "code"
+    },
+    {
+      "name": "struct_07",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "rows",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "dict",
+      "inferred_returns": [
+        "dict"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 184,
+      "source": "code"
+    },
+    {
+      "name": "struct_08",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "name",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 189,
+      "source": "code"
+    },
+    {
+      "name": "struct_09",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "size",
+          "annotation": "int",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 194,
+      "source": "code"
+    },
+    {
+      "name": "struct_10",
+      "module": "api",
+      "parameters": [
+        {
+          "name": "code",
+          "annotation": "str",
+          "default": null
+        }
+      ],
+      "return_annotation": "list",
+      "inferred_returns": [
+        "list"
+      ],
+      "has_docstring": true,
+      "source_file": "api.py",
+      "line_number": 199,
+      "source": "code"
+    }
+  ]
+}

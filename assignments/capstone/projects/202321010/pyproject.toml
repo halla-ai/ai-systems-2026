@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docs-code-drift-detector"
+version = "0.1.0"
+description = "Detect drift between Python code and documentation"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pyyaml>=6.0"]
+mcp = ["pyyaml>=6.0"]
+
+[project.scripts]
+docs-drift = "docs_code_drift_detector.cli:main"
+docs-drift-mcp = "docs_code_drift_detector.mcp_server:run_stdio_server"
+
+[tool.setuptools.packages.find]
+include = ["docs_code_drift_detector*"]
+
+[tool.setuptools.package-data]
+docs_code_drift_detector = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+norecursedirs = ["fixtures"]

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "task_packet",
+  "title": "TaskPacket",
+  "type": "object",
+  "required": ["task_id", "run_id", "project_root", "phase", "assigned_role", "payload"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "project_root": { "type": "string" },
+    "phase": {
+      "type": "string",
+      "enum": ["plan", "work", "review", "qa", "pr"]
+    },
+    "assigned_role": {
+      "type": "string",
+      "enum": ["lead", "planner", "worker", "reviewer"]
+    },
+    "agent_name": { "type": "string" },
+    "payload": { "type": "object" },
+    "context_scope": {
+      "type": "object",
+      "properties": {
+        "function": { "type": "string" },
+        "module": { "type": "string" }
+      }
+    }
+  }
+}

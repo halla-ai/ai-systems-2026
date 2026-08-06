@@ -1,0 +1,18 @@
+{
+  "description": "Hand-labeled realistic fixtures (not tuned to detector). Use for honest precision/recall.",
+  "fixtures": {
+    "sample_project": {
+      "path": "tests/fixtures/sample_project",
+      "note": "README vs code drift + docstring parsing noise (see README MVP Evaluation)",
+      "clean_functions": [],
+      "expected_drifts": [
+        {"module": "api", "function": "parse_json", "drift_type": "return_structure_mismatch", "category": "intentional"},
+        {"module": "api", "function": "greet", "drift_type": "parameter_default_mismatch", "category": "intentional"},
+        {"module": "api", "function": "fetch_items", "drift_type": "return_structure_mismatch", "category": "intentional"}
+      ],
+      "known_false_positives": [
+        {"module": "api", "function": "greet", "drift_type": "return_structure_mismatch", "reason": "docstring Returns: str: ... parsed as structure drift"}
+      ]
+    }
+  }
+}

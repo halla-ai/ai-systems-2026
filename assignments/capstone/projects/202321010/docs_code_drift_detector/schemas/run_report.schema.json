@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run_report",
+  "title": "RunReport",
+  "type": "object",
+  "required": ["run_id", "project_root", "functions_scanned", "drift_count"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "project_root": { "type": "string" },
+    "functions_scanned": { "type": "integer", "minimum": 0 },
+    "drift_count": { "type": "integer", "minimum": 0 },
+    "drifts": { "type": "array" },
+    "decisions": { "type": "array" },
+    "code_suggestions": { "type": "array" },
+    "qa_iterations": { "type": "integer", "minimum": 0 },
+    "qa_passed": { "type": "boolean" },
+    "collaboration_trace": { "type": "array" },
+    "provider_profile": { "type": "string" }
+  }
+}
