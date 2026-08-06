@@ -1,0 +1,14 @@
+vLLM server screenshot placeholder.
+
+Capture this output after running:
+    python -m vllm.entrypoints.openai.api_server \
+        --model Qwen/Qwen2.5-7B-Instruct \
+        --dtype auto \
+        --api-key test-key \
+        --port 8000
+
+Expected log lines:
+    INFO ... Loading model weights...
+    INFO ... Model loaded. Peak GPU memory: 14.8 GiB
+    INFO ... AsyncLLMEngine is ready.
+    INFO ... Uvicorn running on http://0.0.0.0:8000
