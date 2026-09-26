@@ -8,7 +8,7 @@
     "quality_profile": "showcase",
     "repository": { "url": "https://github.com/halla-ai/ai-systems-2026", "provider": "github", "revision": "64d8d18e0f91e7b42d17d5867caed5db7907524c" },
     "views": [
-      { "id": "student-path", "label": "Student reading path", "focus": ["student", "frontend", "content"], "note": "Students browse week notes, labs, and capstone pages rendered from the MDX content collection." },
+      { "id": "student-path", "label": "Student reading path", "focus": ["student", "frontend", "content"], "note": "Students browse week notes, labs, and capstone pages rendered from the Markdown/MDX docs collection." },
       { "id": "build-path", "label": "Build and deploy path", "focus": ["actions", "content", "frontend", "pages"], "note": "GitHub Actions builds the static Astro site and deploys it to GitHub Pages." },
       { "id": "bilingual-path", "label": "Bilingual content path", "focus": ["content", "frontend", "student"], "note": "Root Korean and en locale share the Starlight sidebar with dynamic phase expansion." }
     ]
