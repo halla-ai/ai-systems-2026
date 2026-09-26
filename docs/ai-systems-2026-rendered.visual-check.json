@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "/Users/yj.lee/workspace/work/sites/ai-systems-2026/docs/ai-systems-2026-rendered.html",
-    "sha256": "447b4944d37b42229be21d63cac880fc1a93c0015a1db8c8715372a929b8ab00",
-    "bytes": 804307
+    "path": "/Users/yj.lee/workspace/work/sites/ai-systems-2026/.claude/worktrees/archify/docs/ai-systems-2026-rendered.html",
+    "sha256": "4a786e2b58fa5c52821063a4cdb69c3dc84b4ba7e4be869b6081621b96e7f652",
+    "bytes": 805863
   },
   "state": {
     "detail": "read",

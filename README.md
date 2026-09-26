@@ -62,6 +62,8 @@ src/content/docs/
 └── contribute/        # 기여 가이드
 ```
 
+Interactive blueprint: [docs/ai-systems-2026-rendered.html](docs/ai-systems-2026-rendered.html) (spec: [ai-systems-2026.architecture.json](docs/ai-systems-2026.architecture.json)).
+
 ---
 
 ## 과제 제출
