@@ -5,12 +5,7 @@
     "title": "AI Systems 2026 Course Site",
     "output": "ai-systems-2026-rendered.html",
     "quality_profile": "showcase",
-    "repository": { "url": "https://github.com/halla-ai/ai-systems-2026", "provider": "github", "revision": "c8fc01a9d5f91cdddad9e2bacbf1bbf4fe9ee9ef" },
-    "views": [
-      { "id": "student-path", "label": "Student reading path", "focus": ["student", "frontend", "content"], "note": "Students browse week notes, labs, and capstone pages rendered from the Markdown/MDX docs collection." },
-      { "id": "build-path", "label": "Build and deploy path", "focus": ["actions", "content", "frontend", "pages"], "note": "GitHub Actions builds the static Astro site and deploys it to GitHub Pages." },
-      { "id": "bilingual-path", "label": "Bilingual content path", "focus": ["content", "frontend", "student"], "note": "Root Korean and en locale share the Starlight sidebar with dynamic phase expansion." }
-    ]
+    "repository": { "url": "https://github.com/halla-ai/ai-systems-2026", "provider": "github", "revision": "c8fc01a9d5f91cdddad9e2bacbf1bbf4fe9ee9ef" }
   },
   "components": [
     { "id": "actions", "type": "cloud", "label": "GitHub Actions", "sublabel": "deploy.yml", "pos": [480, 330], "size": [150, 60], "tag": "push on main", "sources": [{ "path": ".github/workflows/deploy.yml", "line": 18, "end_line": 51, "label": "build job runs astro build" }] },
