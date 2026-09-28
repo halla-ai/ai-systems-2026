@@ -4,9 +4,8 @@
   "meta": {
     "title": "AI Systems 2026 Course Site",
     "output": "ai-systems-2026-rendered.html",
-    "viewBox": [1376, 580],
     "quality_profile": "showcase",
-    "repository": { "url": "https://github.com/halla-ai/ai-systems-2026", "provider": "github", "revision": "64d8d18e0f91e7b42d17d5867caed5db7907524c" },
+    "repository": { "url": "https://github.com/halla-ai/ai-systems-2026", "provider": "github", "revision": "c8fc01a9d5f91cdddad9e2bacbf1bbf4fe9ee9ef" },
     "views": [
       { "id": "student-path", "label": "Student reading path", "focus": ["student", "frontend", "content"], "note": "Students browse week notes, labs, and capstone pages rendered from the Markdown/MDX docs collection." },
       { "id": "build-path", "label": "Build and deploy path", "focus": ["actions", "content", "frontend", "pages"], "note": "GitHub Actions builds the static Astro site and deploys it to GitHub Pages." },
@@ -15,9 +14,9 @@
   },
   "components": [
     { "id": "actions", "type": "cloud", "label": "GitHub Actions", "sublabel": "deploy.yml", "pos": [480, 330], "size": [150, 60], "tag": "push on main", "sources": [{ "path": ".github/workflows/deploy.yml", "line": 18, "end_line": 51, "label": "build job runs astro build" }] },
-    { "id": "content", "type": "database", "label": "Content Collections", "sublabel": "src/content/docs", "pos": [250, 110], "size": [160, 60], "tag": "16 weeks + 12 labs", "sources": [{ "path": "src/content.config.ts", "line": 5, "end_line": 23, "label": "Starlight docs collection" }] },
+    { "id": "content", "type": "database", "label": "Content Collections", "sublabel": "src/content/docs", "pos": [250, 190], "size": [150, 60], "tag": "16 weeks + 12 labs", "sources": [{ "path": "src/content.config.ts", "line": 5, "end_line": 23, "label": "Starlight docs collection" }] },
 
-    { "id": "student", "type": "external", "label": "Students", "sublabel": "CHU AI 4th year", "pos": [40, 330], "size": [130, 60] },
+    { "id": "student", "type": "external", "label": "Students", "sublabel": "CHU AI 4th year", "pos": [40, 330], "size": [130, 60], "sources": [{ "path": "astro.config.mjs", "line": 48, "label": "course audience" }, { "path": "README.md", "line": 69, "end_line": 76, "label": "assignment PRs" }] },
     { "id": "frontend", "type": "frontend", "label": "Starlight Docs UI", "sublabel": "Astro 6 static output", "pos": [250, 330], "size": [150, 64], "tag": "MDX + Space Grotesk", "sources": [{ "path": "astro.config.mjs", "line": 16, "label": "starlight() integration" }] },
     { "id": "pages", "type": "cloud", "label": "GitHub Pages", "sublabel": "ai-systems-2026.halla.ai", "pos": [700, 330], "size": [170, 60], "tag": "CNAME", "sources": [{ "path": ".github/workflows/deploy.yml", "line": 53, "end_line": 63, "label": "deploy-pages job" }, { "path": "public/CNAME", "line": 1, "label": "custom domain" }] }
   ],
@@ -31,8 +30,8 @@
     { "id": "actions-to-pages", "from": "actions", "to": "pages", "label": "deploy dist/" }
   ],
   "cards": [
-    { "dot": "cyan", "title": "Course", "items": ["Cheju Halla University AI department 4th-year course: agentic workflows and harness engineering, 16 weeks across 5 phases", "16 week notes (week-01 to week-16), 12 labs, and capstone pages in src/content/docs/", "Phase topics run HOTL governance, MCP architecture, Ralph loops, multi-agent SDLC, and open-weight MLOps with vLLM"] },
-    { "dot": "violet", "title": "Stack", "items": ["Astro 6 with Starlight 0.38 integration, MDX content, sharp image processing (package.json)", "Bilingual locales: root label Korean and en English with custom ThemeSelect and LanguageSelect components", "Build-time active phase computed in astro.config.mjs from SEMESTER_START 2026-03-03 to auto-expand the current phase sidebar"] },
+    { "dot": "cyan", "title": "Course", "items": ["Cheju Halla University AI department 4th-year course: agentic workflows and harness engineering, 16 weeks across 5 phases", "16 week notes (week-01 to week-16), 12 labs, and capstone pages in src/content/docs/", "Students submit assignments as GitHub pull requests under assignments/lab-XX or assignments/week-XX", "Sidebar phases: agentic system foundations, harness engineering, multi-agent SDLC, open-source models and MLOps, capstone Ralphthon"] },
+    { "dot": "violet", "title": "Stack", "items": ["Astro 6 with Starlight 0.38 integration, MDX content, sharp image processing (package.json)", "Bilingual locales: root label Korean and en English with custom ThemeSelect and LanguageSelect components", "Build-time active phase computed in astro.config.mjs from SEMESTER_START 2026-03-03 expands the current phase and its neighbors in the sidebar"] },
     { "dot": "emerald", "title": "Deploy", "items": ["Static build to dist/ via make build, preview via make preview (Makefile)", "GitHub Actions deploy.yml pushes to GitHub Pages with CNAME for ai-systems-2026.halla.ai", "Edit links point to github.com/halla-ai/ai-systems-2026 with lastUpdated enabled"] }
   ]
 }
